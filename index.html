@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Epic SJSU — Collegiate Campus Ministry</title>
+  <title>Epic SJSU — Epic Movement at San José State University</title>
   <meta name="description"
-    content="Epic at San José State University is a collegiate campus ministry rooted in Asian American heritage and welcoming all students to discover faith, purpose, and genuine community.">
+    content="Epic Movement at San José State University (A Cru Ministry). Asian American Christian community open to all students. Partnered with Southbay Community Baptist Church.">
+  <link rel="icon" type="image/jpeg" href="assets/ig/epic-ig-profile.jpg">
+  <link rel="apple-touch-icon" href="assets/ig/epic-ig-profile.jpg">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -19,39 +21,32 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand-logo" data-target-tab="welcome">
-        <div class="brand-icon">
-          <!-- Geometric Cross / Compass SVG -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="2" x2="12" y2="22"></line>
-            <line x1="4" y1="9" x2="20" y2="9"></line>
-            <circle cx="12" cy="12" r="3" stroke-width="1.8"></circle>
-          </svg>
-        </div>
+        <img class="brand-icon-img" src="assets/ig/epic-ig-profile.jpg" alt="Epic Movement SJSU Instagram Profile Icon">
         <div class="brand-text">
           <span class="brand-name">Epic SJSU</span>
-          <span class="brand-sub">Campus Ministry</span>
+          <span class="brand-sub">A Cru Ministry</span>
         </div>
       </div>
 
-      <nav class="main-nav">
-        <a class="nav-link active" data-tab="welcome">Welcome</a>
-        <a class="nav-link" data-tab="about">About Us</a>
-        <a class="nav-link" data-tab="community">Community</a>
-        <a class="nav-link" data-tab="connect">Connect</a>
-        <a class="nav-link" data-tab="events">Events</a>
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <a class="nav-link active" data-tab="welcome" href="#welcome">Welcome</a>
+        <a class="nav-link" data-tab="about" href="#about">About Us</a>
+        <a class="nav-link" data-tab="community" href="#community">Community</a>
+        <a class="nav-link" data-tab="events" href="#events">Events</a>
+        <a class="nav-link" data-tab="past-events" href="#past-events">Past Events</a>
+        <a class="nav-link" data-tab="connect" href="#connect">Connect</a>
       </nav>
 
       <div class="header-actions">
         <!-- Guest Auth State -->
         <div id="signInActionWrapper">
-          <button id="btnOpenSignIn" class="btn-signin">
+          <button id="btnOpenSignIn" class="btn-signin" type="button">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span>Sign In</span>
+            <span>Leader Sign In</span>
           </button>
         </div>
 
@@ -59,9 +54,9 @@
         <div id="userBadgeContainer" class="user-badge-container">
           <div class="user-pill">
             <span class="user-status-dot"></span>
-            <span>Leader Portal</span>
+            <span id="loggedInLeaderName">Leader Portal</span>
           </div>
-          <button id="btnSignOut" class="btn-signout">Sign Out</button>
+          <button id="btnSignOut" class="btn-signout" type="button">Sign Out</button>
         </div>
       </div>
     </div>
@@ -75,167 +70,230 @@
     <section class="hero-section">
       <div class="container hero-grid">
         <div class="hero-content">
-          <div class="hero-subtitle">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-              </polygon>
-            </svg>
-            San José State University Chapter
-          </div>
-          <h1 class="hero-title">Finding family, purpose, and <em>faith</em> at SJSU.</h1>
-          <p class="hero-lead">College moves quickly. Epic is a campus ministry community rooted in Asian American
-            heritage and welcoming students from all walks of life to experience Christ-centered friendship.</p>
+          <h1 class="hero-title">Asian American Christian community at SJSU — <em>open to all!</em></h1>
+          <p class="hero-lead">Welcome to <strong>Epic Movement at San José State University</strong>, a campus ministry
+            affiliated with <strong>Cru</strong> and partnered with <strong>Southbay Community Baptist Church</strong>.
+            Join us for weekly Large Group in Dudley Moorhead Hall (DMH 231) and Community Groups in the SJSU Student
+            Union.</p>
 
           <div class="hero-actions">
-            <button class="btn-primary" data-target-tab="connect">
-              <span>I'm New to SJSU</span>
+            <button class="btn-primary" data-target-tab="connect" type="button">
+              <span>Sign Up for Community Group</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </button>
-            <button class="btn-secondary" data-target-tab="community">Find a Life Group</button>
+            <button class="btn-secondary" data-target-tab="events" type="button">View Event Calendar</button>
           </div>
 
           <div class="hero-stats">
             <div class="hero-stat-item">
-              <span class="hero-stat-num">85+</span>
-              <span class="hero-stat-label">Active Students</span>
+              <span class="hero-stat-num">Wed 5–6:30p</span>
+              <span class="hero-stat-label">Large Group • DMH 231</span>
             </div>
             <div class="hero-stat-item">
-              <span class="hero-stat-num">6</span>
-              <span class="hero-stat-label">Campus Life Groups</span>
+              <span class="hero-stat-num">Mon &amp; Thu</span>
+              <span class="hero-stat-label">Student Union Above Jamba</span>
             </div>
             <div class="hero-stat-item">
-              <span class="hero-stat-num">100%</span>
-              <span class="hero-stat-label">All Majors Welcome</span>
+              <span class="hero-stat-num">Sun 10:00a</span>
+              <span class="hero-stat-label">Southbay Community Baptist</span>
             </div>
           </div>
         </div>
 
         <div class="hero-media-wrapper">
           <div class="hero-card-main">
-            <img class="hero-card-img"
-              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1000&q=80"
-              alt="SJSU Epic students gathering on campus">
-            <div class="hero-floating-card">
-              <div class="floating-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-              </div>
-              <div>
-                <div class="floating-text-title">Large Group Gathering</div>
-                <div class="floating-text-sub">Every Thursday • 7:00 PM • Student Union</div>
-              </div>
+            <img class="hero-card-img" src="assets/ig/post_Dee-aqgPOI_.jpg"
+              alt="SJSU Epic Invites You — Build, Send/Serve, Community Groups, and Partnering Church Flyer">
+          </div>
+          <div class="hero-floating-card">
+            <div class="floating-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <div>
+              <div class="floating-text-title">Weekly Wednesday Large Group</div>
+              <div class="floating-text-sub">Wednesdays • 5:00–6:30 PM • DMH 231 (Free Dinner!)</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Three Pillars Section -->
+    <!-- Three Pillars Section (BUILD, SEND/SERVE, COMMUNITY GROUPS from @epic_sjsu) -->
     <section class="section-spacing">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Our Foundation</span>
-          <h2 class="section-title">A community built for college life.</h2>
-          <p class="section-description">Navigating midterms, campus life, identity, and the future is not something you
-            have to do alone.</p>
+          <h2 class="section-title">How we gather each week at San José State.</h2>
+          <p class="section-description">From studying Philippians together above Jamba Juice in the Student Union to
+            sharing free meals and worship in Dudley Moorhead Hall, here is what life in Epic looks like.</p>
         </div>
 
         <div class="pillars-grid">
           <div class="pillar-card">
-            <div class="pillar-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <div class="pillar-header-row">
+              <svg class="pillar-inline-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                 <path d="M2 17l10 5 10-5"></path>
                 <path d="M2 12l10 5 10-5"></path>
               </svg>
+              <h3 class="pillar-title">Build (Wednesday Large Group)</h3>
             </div>
-            <h3 class="pillar-title">Grounded Faith</h3>
-            <p class="pillar-desc">Explore the questions of faith, doubt, and scripture in an open, thoughtful
-              atmosphere designed to challenge and deepen your personal walk with God.</p>
+            <p class="pillar-desc">Every Wednesday from 5:00–6:30 PM in Dudley Moorhead Hall (DMH 231), we gather for
+              worship, Bible teaching on personal growth and applying who we are in Christ, and free food—from Campus
+              Burgers and In-N-Out to Boba &amp; KFC Chicken.</p>
           </div>
 
           <div class="pillar-card">
-            <div class="pillar-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <div class="pillar-header-row">
+              <svg class="pillar-inline-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
+              <h3 class="pillar-title">Community Groups (Mon &amp; Thu)</h3>
             </div>
-            <h3 class="pillar-title">Unconditional Family</h3>
-            <p class="pillar-desc">From late-night boba runs on San Carlos Street to study jams at the MLK Library, you
-              will find authentic lifelong friends who truly care about your heart.</p>
+            <p class="pillar-desc">Epic Community Groups seek to build friendships, share life with each other, study,
+              discuss, and apply the Book of Philippians, and have fun together. Meet Mondays (3:30–4:45 PM) or
+              Thursdays (2:30–3:45 PM) at the Student Union tables above Jamba Juice.</p>
           </div>
 
           <div class="pillar-card">
-            <div class="pillar-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
+            <div class="pillar-header-row">
+              <svg class="pillar-inline-icon" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
                 <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
               </svg>
+              <h3 class="pillar-title">Send, Serve &amp; Retreats</h3>
             </div>
-            <h3 class="pillar-title">Campus Purpose</h3>
-            <p class="pillar-desc">Discover how your unique talents, academic major, and personal culture can bring hope
-              and positive impact to our San José State campus and beyond.</p>
+            <p class="pillar-desc">Learn to share your story, grow in evangelism, discipleship, and missions for God's
+              glory, and get away together at our annual Fall Retreat at Daybreak Camp in Felton, CA (Nov 13–15) with
+              Epic Mission Director Young Lee.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Student Testimonials -->
+    <!-- Real Quotes & Video Testimonies from @epic_sjsu Instagram -->
     <section class="quotes-section">
       <div class="container">
-        <div class="section-header" style="color: #fff;">
-          <span class="section-tag"
-            style="background: rgba(212,175,55,0.2); color: #f4d36e; border-color: rgba(212,175,55,0.4);">Student
-            Voices</span>
-          <h2 class="section-title" style="color: #fff;">What students say about Epic.</h2>
+        <div class="section-header quotes-header">
+          <h2 class="section-title" style="color: #fff;">Real voices from @epic_sjsu.</h2>
+          <p class="section-description" style="color: var(--silver-300);">Direct quotes from SJSU students, club
+            leaders, and speakers featured on our Instagram reels and posts.</p>
         </div>
 
         <div class="quotes-grid">
+          <!-- Quote 1: Jonathan Aye (from Reel DeshZ_ZpoS8) -->
           <div class="quote-card">
-            <p class="quote-text">"Coming to SJSU from out of town was overwhelming. Walking into Epic my first week
-              felt like stepping into a second home. The upperclassmen helped me find my classes and prayed with me
-              through finals."</p>
+            <p class="quote-text">"I'm going to take a bit of a break from schoolwork as well as try and build
+              relationships with these people in Epic. I think there are some friends that I want to go closer with, and
+              I also want to learn more about the Word of God."</p>
             <div class="quote-author">
-              <img class="quote-avatar"
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
-                alt="Sarah Lin">
+              <img class="quote-avatar" src="assets/grey-profile-avatar.svg"
+                alt="Jonathan Aye grey background profile photo">
               <div>
-                <div class="quote-name">Sarah Lin</div>
-                <div class="quote-meta">Business Administration • Class of 2027</div>
+                <div class="quote-name">Jonathan Aye</div>
+                <div class="quote-meta">4th Year, Computer Science • Student Co-President (Instagram Reel)</div>
               </div>
             </div>
           </div>
 
+          <!-- Quote 2: Jonathan Aye on Retreats (from Reel DeshZ_ZpoS8) -->
           <div class="quote-card">
-            <p class="quote-text">"I wasn't sure if I fit into a campus ministry because I had so many questions about
-              faith. Epic welcomed me with open arms and zero judgment. My life group has been the anchor of my college
-              experience."</p>
+            <p class="quote-text">"Why should someone go if they're still on the fence? Well, I would say that
+              personally, one of my best experiences in the past was going on a retreat with my church, and I found my
+              relationship with God changing a lot."</p>
             <div class="quote-author">
-              <img class="quote-avatar"
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
-                alt="David Tran">
+              <img class="quote-avatar" src="assets/grey-profile-avatar.svg"
+                alt="Jonathan Aye grey background profile photo">
               <div>
-                <div class="quote-name">David Tran</div>
-                <div class="quote-meta">Software Engineering • Class of 2026</div>
+                <div class="quote-name">Jonathan Aye</div>
+                <div class="quote-meta">4th Year, Computer Science • On Why You Should Come to Fall Retreat</div>
               </div>
             </div>
+          </div>
+
+          <!-- Quote 3: Young Lee (from Reel DeuQP1BBLvN) -->
+          <div class="quote-card">
+            <p class="quote-text">"I want to personally invite you. We're going to have an amazing time looking at what
+              the gospel is, and how it transforms our identity and our relationship with God, and how you can be an
+              expression of the gospel."</p>
+            <div class="quote-author">
+              <img class="quote-avatar" src="assets/grey-profile-avatar.svg"
+                alt="Young Lee grey background profile photo">
+              <div>
+                <div class="quote-name">Young Lee</div>
+                <div class="quote-meta">Mission Director of Epic Movement • Fall Retreat Guest Speaker</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quote 4: Post DdmMBoQBvSv & Bio Form Quote -->
+          <div class="quote-card">
+            <p class="quote-text">"Praise the Lord! If you're looking for community, come and see if you can find it
+              here... In short, this is a great way to build friendships, to grow in your walk with God, and to share
+              life with one another."</p>
+            <div class="quote-author">
+              <img class="quote-avatar" src="assets/grey-profile-avatar.svg"
+                alt="Jerry Wong grey background profile photo">
+              <div>
+                <div class="quote-name">Jerry Wong &amp; Epic SJSU Leadership</div>
+                <div class="quote-meta">John 1:45–46 ("Come and see") • @epic_sjsu</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real Instagram Reels & Feed Pictures Strip -->
+        <div class="ig-media-showcase">
+          <div class="ig-media-header">
+            <h3 class="ig-media-title">From Our Instagram Page (@epic_sjsu)</h3>
+            <a class="btn-secondary btn-sm-light" href="https://www.instagram.com/epic_sjsu/" target="_blank"
+              rel="noopener">View @epic_sjsu on Instagram</a>
+          </div>
+          <div class="ig-reels-row">
+            <figure class="ig-reel-figure">
+              <video class="ig-reel-video" controls preload="metadata" poster="assets/ig/post_DeshZ_ZpoS8.jpg">
+                <source src="assets/ig/reel_DeshZ_ZpoS8.mp4" type="video/mp4">
+              </video>
+              <figcaption class="ig-reel-caption">Student Interview Reel: Jonathan Aye (4th Year CS) shares why he is
+                going to Epic Fall Retreat (Nov 13–15).</figcaption>
+            </figure>
+
+            <figure class="ig-reel-figure">
+              <video class="ig-reel-video" controls preload="metadata" poster="assets/ig/post_DeuQP1BBLvN.jpg">
+                <source src="assets/ig/reel_DeuQP1BBLvN.mp4" type="video/mp4">
+              </video>
+              <figcaption class="ig-reel-caption">Fall Retreat Invitation Reel: Young Lee (Epic Mission Director)
+                invites SJSU students to Daybreak Camp in Felton, CA.</figcaption>
+            </figure>
+
+            <figure class="ig-reel-figure">
+              <img class="ig-reel-photo" src="assets/ig/post_DevGIuGzauO.jpg"
+                alt="Epic SJSU Boba Bar and KFC Chicken Large Group Flyer">
+              <figcaption class="ig-reel-caption">Wednesday Large Group in DMH 231 (5–6:30 PM): "Join a loving
+                community! Learn and apply the Holy Bible! Enjoy the FREE food!"</figcaption>
+            </figure>
+
+            <figure class="ig-reel-figure">
+              <img class="ig-reel-photo" src="assets/ig/post_DeKfxjUy-Hj.jpg"
+                alt="SJSU Epic KBBQ Invites You Social Flyer">
+              <figcaption class="ig-reel-caption">SJSU Epic KBBQ Social at the Student Union Outside Tables (5–6:30 PM):
+                "KBBQ • Social • Make Friends • Bible • Join Community".</figcaption>
+            </figure>
           </div>
         </div>
       </div>
@@ -249,75 +307,133 @@
     <section class="section-spacing">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Our Heart & Story</span>
-          <h1 class="section-title">Who we are at SJSU.</h1>
-          <p class="section-description">Epic Movement is a campus ministry affiliated with Cru. While rooted in Asian
-            American cultural awareness, our doors are warmly open to students of all ethnicities, majors, and
-            backgrounds.</p>
+          <h1 class="section-title">About Epic Movement at SJSU.</h1>
+          <p class="section-description">Epic Movement at San José State University is an Asian American Christian
+            community open to all students, affiliated with <strong>Cru</strong> and partnered with <strong>Southbay
+              Community Baptist Church</strong>.</p>
         </div>
 
         <div class="about-editorial-grid">
-          <img class="about-editorial-img"
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80"
-            alt="Epic SJSU students laughing together">
+          <img class="about-editorial-img" src="assets/ig/post_Ddn7ICbhVpf.jpg"
+            alt="Epic SJSU Build, Send/Serve, Community Groups, and Partnering Church Overview">
           <div>
-            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 1rem;">Bridging Culture and Faith.</h2>
-            <p class="about-body-text">College is a formative chapter where students wrestle with heritage,
-              expectations, and personal identity. Epic was born out of a desire to create a safe, vibrant space where
-              students can honor their family backgrounds while exploring what a personal relationship with Jesus looks
-              like.</p>
-            <p class="about-body-text">We believe Christianity is not about conforming to a rigid mold, but about
-              knowing the grace of God and living out compassionate service. Whether you grew up in church, practice a
-              different faith tradition, or have never stepped foot in a spiritual community, there is a seat at the
-              table for you.</p>
-            <div style="margin-top: 1.5rem;">
-              <button class="btn-primary" data-target-tab="connect">Get Connected With Us</button>
+            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 1rem;">Learning &amp; Applying God's Word
+              Together.</h2>
+            <p class="about-body-text">At SJSU Epic, our heart is to build genuine Christ-centered friendships, share
+              life with one another, and learn and apply core values of evangelism, discipleship, and missions in
+              fellowship for God's glory.</p>
+            <p class="about-body-text">Whether we are gathering on Wednesdays from 5:00–6:30 PM in <strong>Dudley
+                Moorhead Hall (DMH 231)</strong> for our <em>BUILD</em> and <em>SEND/SERVE</em> Large Group series, or
+              meeting around the tables above Jamba Juice in the <strong>SJSU Student Union</strong> on Mondays and
+              Thursdays to study Philippians, our community is open to every student on campus.</p>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn-primary" data-target-tab="connect" type="button">Sign Up for Community Group</button>
+              <button class="btn-secondary" data-target-tab="past-events" type="button">Explore Past Events</button>
             </div>
           </div>
         </div>
 
-        <!-- Leadership Directory -->
+        <!-- Leadership Directory (All Grey Background Profile Photos) -->
         <div class="section-header" style="margin-top: var(--space-16);">
-          <span class="section-tag">Student Leadership & Staff</span>
-          <h2 class="section-title">Meet your campus team.</h2>
-          <p class="section-description">Current students and full-time ministry advisors dedicated to walking alongside
-            you through your college journey.</p>
+          <h2 class="section-title">Club Staff &amp; Student Leadership.</h2>
+          <p class="section-description">Reach out to our club staff advisor and student co-presidents anytime with
+            questions about weekly meetings, rides, or Bible studies.</p>
         </div>
 
         <div class="team-grid">
+          <!-- Club Staff: Jerry Wong -->
           <div class="team-card">
-            <img class="team-img"
-              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
-              alt="Marcus Chen">
+            <div class="team-avatar-frame">
+              <img class="team-img" src="assets/grey-profile-avatar.svg"
+                alt="Jerry Wong — Grey background profile photo">
+            </div>
             <div class="team-info">
-              <div class="team-role">Student President</div>
-              <h3 class="team-name">Marcus Chen</h3>
-              <p class="team-bio">Senior studying Computer Science. Leads weekly logistics, campus outreach, and loves
-                spikeball on Tower Lawn.</p>
+              <h3 class="team-name">Jerry Wong</h3>
+              <div class="team-role-badge">Club Staff • Cru / Epic Movement</div>
+              <p class="team-bio">Campus Staff Advisor with Epic Movement (Cru) at SJSU after over 22 years of pastoral
+                ministry. Co-leads the Monday Community Group (3:30–4:45 PM at the Student Union tables above Jamba
+                Juice) with Jonathan.</p>
+              <div class="team-contact-line">Phone: (925) 997-1083 • jerry.wong@epicmovement.com</div>
             </div>
           </div>
 
+          <!-- Student Co-President: Nathan Wong -->
           <div class="team-card">
-            <img class="team-img"
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
-              alt="Chloe Nguyen">
+            <div class="team-avatar-frame">
+              <img class="team-img" src="assets/grey-profile-avatar.svg"
+                alt="Nathan Wong — Grey background profile photo">
+            </div>
             <div class="team-info">
-              <div class="team-role">Community Coordinator</div>
-              <h3 class="team-name">Chloe Nguyen</h3>
-              <p class="team-bio">Junior majoring in Design. Coordinates freshman welcomes, boba socials, and oversees
-                our campus design flyers.</p>
+              <h3 class="team-name">Nathan Wong</h3>
+              <div class="team-role-badge">Club Student President</div>
+              <p class="team-bio">Student Co-President of Epic SJSU. Leads the Thursday Community Group (2:30–3:45 PM at
+                the Student Union tables above Jamba Juice) with Kadin, speaks at Large Group (Oct 28), and coordinates
+                retreat registrations (Venmo: @Nathan86091).</p>
+              <div class="team-contact-line">Phone: (925) 339-5010</div>
             </div>
           </div>
 
+          <!-- Student Co-President: Jonathan Aye -->
           <div class="team-card">
-            <img class="team-img"
-              src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80"
-              alt="Pastor Joshua Park">
+            <div class="team-avatar-frame">
+              <img class="team-img" src="assets/grey-profile-avatar.svg"
+                alt="Jonathan Aye — Grey background profile photo">
+            </div>
             <div class="team-info">
-              <div class="team-role">Campus Staff Advisor</div>
-              <h3 class="team-name">Joshua Park</h3>
-              <p class="team-bio">Full-time Cru campus missionary supporting SJSU students with pastoral care,
-                mentorship, and scripture studies.</p>
+              <h3 class="team-name">Jonathan Aye</h3>
+              <div class="team-role-badge">Club Student President</div>
+              <p class="team-bio">4th Year Computer Science major at San José State University and Student Co-President.
+                Co-leads the Monday Community Group (3:30–4:45 PM at the Student Union tables above Jamba Juice) with
+                Jerry Wong.</p>
+              <div class="team-contact-line">Phone: (209) 740-7102</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Affiliated Organization (Cru) & Affiliated Church (Southbay Community Baptist Church / Pastor Rob Jeon) -->
+        <div class="section-header" style="margin-top: var(--space-16);">
+          <h2 class="section-title">Affiliated Organization &amp; Partnering Church.</h2>
+          <p class="section-description">Epic SJSU is part of the national Cru collegiate network and partners closely
+            with Southbay Community Baptist Church in San José.</p>
+        </div>
+
+        <div class="affiliations-grid">
+          <!-- Affiliated Organization: Cru -->
+          <div class="affiliation-card">
+            <div class="affiliation-header">
+              <img class="affiliation-logo-img" src="assets/ig/epic-ig-profile.jpg"
+                alt="Epic Movement — A Cru Ministry Emblem">
+              <div>
+                <h3 class="affiliation-title">Cru &bull; Epic Movement</h3>
+                <div class="affiliation-sub">Affiliated National Collegiate Organization</div>
+              </div>
+            </div>
+            <p class="affiliation-desc"><strong>Epic Movement</strong> is the Asian American ministry of
+              <strong>Cru</strong>, caring for campus communities across the nation. At SJSU, we partner with national
+              speakers like Epic Mission Director <strong>Young Lee</strong> to equip students in evangelism,
+              discipleship, and campus missions.</p>
+            <div class="affiliation-meta-list">
+              <div><strong>Campus Chapter:</strong> Epic Movement at San José State University (@epic_sjsu)</div>
+              <div><strong>Club Staff Advisor:</strong> Jerry Wong &bull; (925) 997-1083</div>
+            </div>
+          </div>
+
+          <!-- Affiliated Church: Southbay Community Baptist Church -->
+          <div class="affiliation-card">
+            <div class="affiliation-header">
+              <img class="affiliation-avatar-img" src="assets/grey-profile-avatar.svg"
+                alt="Pastor Rob Jeon — Grey background profile photo">
+              <div>
+                <h3 class="affiliation-title">Southbay Community Baptist Church</h3>
+                <div class="affiliation-sub">Affiliated Partnering Church &bull; Pastor Rob Jeon</div>
+              </div>
+            </div>
+            <p class="affiliation-desc">Our partnering local church in San José is <strong>Southbay Community Baptist
+                Church (SCBC)</strong>, where <strong>Pastor Rob Jeon</strong> serves as the English Pastor. SJSU
+              students are warmly invited to join every Sunday morning for worship and fellowship.</p>
+            <div class="affiliation-meta-list">
+              <div><strong>Pastor:</strong> Pastor Rob Jeon &bull; Phone: (925) 872-6112</div>
+              <div><strong>Sunday Service Time:</strong> English Service at 10:00 AM</div>
             </div>
           </div>
         </div>
@@ -326,162 +442,193 @@
   </main>
 
   <!-- ========================================================================
-       PAGE 3: COMMUNITY & LIFE GROUPS
+       PAGE 3: COMMUNITY & SMALL GROUPS
        ======================================================================== -->
   <main id="community" class="tab-page">
     <section class="section-spacing">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Life Groups</span>
-          <h1 class="section-title">Find your weekly circle.</h1>
-          <p class="section-description">Life Groups are small circles of 6 to 10 students that gather once a week
-            across campus for scripture study, life discussions, prayer, and shared dinners.</p>
+          <h1 class="section-title">Community Groups &amp; Weekly Gatherings.</h1>
+          <p class="section-description">Epic Community Groups seek to build friendships, share life with each other,
+            study, discuss, and apply the Bible (Philippians), and have fun together. Both groups cover the same
+            content—pick the time that fits your schedule!</p>
         </div>
 
         <div class="filter-bar">
-          <button class="filter-btn lifegroup-filter-btn active" data-filter="all">All Groups</button>
-          <button class="filter-btn lifegroup-filter-btn" data-filter="freshman">Freshman Dorms</button>
-          <button class="filter-btn lifegroup-filter-btn" data-filter="upperclassmen">Upperclassmen</button>
-          <button class="filter-btn lifegroup-filter-btn" data-filter="commuter">Commuters & Engineering</button>
+          <button class="filter-btn lifegroup-filter-btn active" data-filter="all" type="button">All Gatherings</button>
+          <button class="filter-btn lifegroup-filter-btn" data-filter="community-group" type="button">Community Groups
+            (Mon &amp; Thu)</button>
+          <button class="filter-btn lifegroup-filter-btn" data-filter="big-group" type="button">Wednesday Large Group
+            (Big Group)</button>
+          <button class="filter-btn lifegroup-filter-btn" data-filter="church-social" type="button">Socials &amp;
+            Partner Church</button>
         </div>
 
         <div class="lifegroup-grid">
-          <!-- Freshman Men -->
-          <div class="lifegroup-card" data-category="freshman">
-            <span class="lifegroup-badge">Freshmen</span>
-            <h3 class="lifegroup-title">CV2 Freshman Guys</h3>
+          <!-- Monday Community Group -->
+          <div class="lifegroup-card" data-category="community-group">
+            <h2 class="lifegroup-title">Monday Community Group / Bible Study</h2>
+            <span class="lifegroup-badge">Community Group &bull; Started Sept 21</span>
             <div class="lifegroup-details">
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>Tuesdays • 7:30 PM</span>
+                <span>Mondays &bull; 3:30 PM – 4:45 PM (3:30–4:30 PM)</span>
               </div>
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>Campus Village Building 2 (Lounge)</span>
+                <span>SJSU Student Union &bull; Tables above Jamba Juice (between Jamba Juice &amp; Info
+                  Center/Bookstore)</span>
               </div>
             </div>
-            <div class="lifegroup-leaders">Led by Nathan & Aaron</div>
+            <p class="lifegroup-desc">Open to guys and girls of all ages and majors. Study what God has to say in
+              Philippians and share life together.</p>
+            <div class="lifegroup-leaders">Led by Jonathan Aye &amp; Jerry Wong</div>
           </div>
 
-          <!-- Freshman Women -->
-          <div class="lifegroup-card" data-category="freshman">
-            <span class="lifegroup-badge">Freshmen</span>
-            <h3 class="lifegroup-title">Joe West Freshman Girls</h3>
+          <!-- Thursday Community Group -->
+          <div class="lifegroup-card" data-category="community-group">
+            <h2 class="lifegroup-title">Thursday Community Group / Bible Study</h2>
+            <span class="lifegroup-badge">Community Group &bull; Started Sept 24</span>
             <div class="lifegroup-details">
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>Wednesdays • 7:00 PM</span>
+                <span>Thursdays &bull; 2:30 PM – 3:45 PM (2:30–3:30 PM)</span>
               </div>
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>Joe West Hall Floor 4 Lounge</span>
+                <span>SJSU Student Union &bull; Tables above Jamba Juice (between Jamba Juice &amp; Info
+                  Center/Bookstore)</span>
               </div>
             </div>
-            <div class="lifegroup-leaders">Led by Emily & Joy</div>
+            <p class="lifegroup-desc">Same Bible study content as the Monday group! A welcoming space to build
+              friendships and grow in your walk with God.</p>
+            <div class="lifegroup-leaders">Led by Nathan Wong &amp; Kadin</div>
           </div>
 
-          <!-- Upperclassmen Co-Ed -->
-          <div class="lifegroup-card" data-category="upperclassmen">
-            <span class="lifegroup-badge">Upperclassmen</span>
-            <h3 class="lifegroup-title">Sophomore & Junior Co-Ed</h3>
+          <!-- Wednesday Large Group (Big Group) -->
+          <div class="lifegroup-card" data-category="big-group">
+            <h2 class="lifegroup-title">Weekly Wednesday Large Group (Big Group)</h2>
+            <span class="lifegroup-badge">Big Group &bull; BUILD &amp; SEND/SERVE</span>
             <div class="lifegroup-details">
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>Mondays • 6:30 PM</span>
+                <span>Wednesdays &bull; 5:00 PM – 6:30 PM</span>
               </div>
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>10th Street Apartment (Off-Campus)</span>
+                <span>Dudley Moorhead Hall (DMH 231 &amp; DMH 359)</span>
               </div>
             </div>
-            <div class="lifegroup-leaders">Led by Justin & Rachel</div>
+            <p class="lifegroup-desc">Weekly Large Group for community, Bible messages, and free dinner (Campus Burgers,
+              Boba &amp; KFC Chicken, Tacos, In-N-Out).</p>
+            <div class="lifegroup-leaders">Led by Jerry Wong, Nathan Wong, Jonathan Aye &amp; Guest Speakers</div>
           </div>
 
-          <!-- Commuter Group -->
-          <div class="lifegroup-card" data-category="commuter">
-            <span class="lifegroup-badge">Commuters</span>
-            <h3 class="lifegroup-title">Commuters & STEM Fellows</h3>
+          <!-- Post-Meeting Socials -->
+          <div class="lifegroup-card" data-category="church-social">
+            <h2 class="lifegroup-title">After-Meeting Socials &amp; KBBQ</h2>
+            <span class="lifegroup-badge">Social &amp; Fellowship</span>
             <div class="lifegroup-details">
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>Thursdays • 4:30 PM (Pre-Large Group)</span>
+                <span>Wednesdays &bull; 5:00–6:30 PM &amp; 6:30–7:30 PM</span>
               </div>
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>Engineering Building Lobby / Union</span>
+                <span>Student Union Outside Tables &amp; DMH 231</span>
               </div>
             </div>
-            <div class="lifegroup-leaders">Led by Brandon & Caleb</div>
+            <p class="lifegroup-desc">Korean BBQ socials at the outdoor tables near the Student Union, plus Volleyball
+              &amp; Pizza My Heart right after general meeting.</p>
+            <div class="lifegroup-leaders">All SJSU Students Welcome</div>
           </div>
 
-          <!-- Senior Prep -->
-          <div class="lifegroup-card" data-category="upperclassmen">
-            <span class="lifegroup-badge">Seniors</span>
-            <h3 class="lifegroup-title">Senior Capstone & Life After SJSU</h3>
+          <!-- Fall Retreat -->
+          <div class="lifegroup-card" data-category="big-group">
+            <h2 class="lifegroup-title">SJSU Epic Fall Retreat: "Dream Big, Love Well"</h2>
+            <span class="lifegroup-badge">Retreat &bull; Nov 13–15, 2026</span>
             <div class="lifegroup-details">
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>Wednesdays • 8:00 PM</span>
+                <span>Fri–Sun, Nov 13–15 (Depart SJSU ATMs 3:00 PM)</span>
               </div>
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>MLK Library Group Study Room 3</span>
+                <span>Daybreak Camp in Felton, CA</span>
               </div>
             </div>
-            <div class="lifegroup-leaders">Led by Advisor Joshua & Michelle</div>
+            <p class="lifegroup-desc">5 meals, 4 speaking sessions with Epic Mission Director Young Lee, campfire,
+              volleyball, beach/study free time, and cabins included ($75; scholarships available).</p>
+            <div class="lifegroup-leaders">Contacts: Jerry Wong (925) 997-1083 &bull; Jonathan Aye (209) 740-7102</div>
           </div>
 
-          <!-- Transfer Cohort -->
-          <div class="lifegroup-card" data-category="freshman">
-            <span class="lifegroup-badge">Transfers</span>
-            <h3 class="lifegroup-title">Transfer Student Cohort</h3>
+          <!-- Partnering Church -->
+          <div class="lifegroup-card" data-category="church-social">
+            <h2 class="lifegroup-title">Southbay Community Baptist Church</h2>
+            <span class="lifegroup-badge">Affiliated Partnering Church</span>
             <div class="lifegroup-details">
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>Tuesdays • 6:00 PM</span>
+                <span>Sundays &bull; 10:00 AM English Service</span>
               </div>
               <div class="lifegroup-detail-row">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>Student Union Food Court Mezzanine</span>
+                <span>Southbay Community Baptist Church (San José, CA)</span>
               </div>
             </div>
-            <div class="lifegroup-leaders">Led by Kevin & Grace</div>
+            <p class="lifegroup-desc">Join SJSU students on Sunday mornings at our affiliated partnering church led by
+              English Pastor Rob Jeon.</p>
+            <div class="lifegroup-leaders">Pastor Rob Jeon &bull; (925) 872-6112</div>
+          </div>
+        </div>
+
+        <!-- Original Community Groups Flyer Banner -->
+        <div class="community-flyer-strip">
+          <img class="community-flyer-img" src="assets/ig/post_DdiSLJ5hwnz.jpg"
+            alt="Epic SJSU Starting Sept 21 Join Community Groups Flyer">
+          <div class="community-flyer-copy">
+            <h2 class="section-title" style="font-size: 1.85rem; margin-bottom: 0.75rem;">Join a Community Group this
+              week!</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">"Get connected and grow together in fellowship
+              and God's Word. Mondays 3:30–4:45 PM &bull; Thursdays 2:30–3:45 PM &bull; Same Content, Join One! SJSU
+              Student Union above Jamba Juice."</p>
+            <button class="btn-primary" data-target-tab="connect" type="button">Fill Out the Community Group Form</button>
           </div>
         </div>
       </div>
@@ -489,296 +636,282 @@
   </main>
 
   <!-- ========================================================================
-       PAGE 4: CONNECT
-       ======================================================================== -->
-  <main id="connect" class="tab-page">
-    <section class="section-spacing">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Get In Touch</span>
-          <h1 class="section-title">We would love to welcome you.</h1>
-          <p class="section-description">Fill out the quick connect form below. Whether you need a ride to church, want
-            to grab boba, or simply have questions about college life, our leaders will reach out.</p>
-        </div>
-
-        <div class="connect-grid">
-          <!-- Form -->
-          <div class="connect-form-card">
-            <div id="connectSuccessMsg"
-              style="display: none; background: #ecfdf5; border: 1px solid #10b981; color: #065f46; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 0.9rem;">
-              Thank you! Your information has been received. An Epic leader will text you shortly with details on this
-              week's gatherings!
-            </div>
-
-            <form id="connectIntakeForm">
-              <div class="form-group">
-                <label class="form-label" for="connName">Full Name</label>
-                <input class="form-input" type="text" id="connName" required placeholder="e.g. Alex Zhang">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="connEmail">SJSU Email or Phone Number</label>
-                <input class="form-input" type="text" id="connEmail" required
-                  placeholder="alex.zhang@sjsu.edu or (408) 555-0199">
-              </div>
-
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <div class="form-group">
-                  <label class="form-label" for="connYear">Class Standing</label>
-                  <select class="form-select" id="connYear">
-                    <option>Freshman</option>
-                    <option>Sophomore</option>
-                    <option>Junior</option>
-                    <option>Senior</option>
-                    <option>Transfer Student</option>
-                    <option>Graduate Student</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="connMajor">Academic Major</label>
-                  <input class="form-input" type="text" id="connMajor" placeholder="e.g. Computer Science">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="connInterest">I'm Interested In:</label>
-                <select class="form-select" id="connInterest">
-                  <option>Finding a Life Group</option>
-                  <option>Rides to Local Churches on Sunday</option>
-                  <option>One-on-One Coffee Chat with a Leader</option>
-                  <option>General Fellowship & Social Events</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="connNotes">Questions or Notes (Optional)</label>
-                <textarea class="form-textarea" id="connNotes" rows="3"
-                  placeholder="Tell us a bit about yourself or where you live on/off campus..."></textarea>
-              </div>
-
-              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-                <span>Send Info & Get Connected</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </button>
-            </form>
-          </div>
-
-          <!-- Campus Meeting Locations & Socials -->
-          <div class="connect-info-card">
-            <h3 class="section-title" style="font-size: 1.6rem; margin-bottom: 1rem;">Where to Find Us on Campus</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">We host gatherings right
-              in the heart of SJSU's student life areas:</p>
-
-            <div class="location-item">
-              <div class="location-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div>
-                <strong style="color: var(--navy-900); display: block; font-size: 0.95rem;">Diaz Compean Student
-                  Union</strong>
-                <span style="font-size: 0.85rem; color: var(--text-secondary);">Thursday Large Group meetings (Meeting
-                  Rooms 2A / 2B)</span>
-              </div>
-            </div>
-
-            <div class="location-item">
-              <div class="location-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-              </div>
-              <div>
-                <strong style="color: var(--navy-900); display: block; font-size: 0.95rem;">Dr. Martin Luther King Jr.
-                  Library</strong>
-                <span style="font-size: 0.85rem; color: var(--text-secondary);">Weekly study sessions & group
-                  discussions (2nd Floor & Mezzanine)</span>
-              </div>
-            </div>
-
-            <div class="location-item">
-              <div class="location-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M8 12h8"></path>
-                </svg>
-              </div>
-              <div>
-                <strong style="color: var(--navy-900); display: block; font-size: 0.95rem;">Tower Lawn</strong>
-                <span style="font-size: 0.85rem; color: var(--text-secondary);">Spikeball, outreach tabling, and Friday
-                  afternoon picnics</span>
-              </div>
-            </div>
-
-            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--silver-200);">
-              <h4
-                style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-600); margin-bottom: 0.75rem;">
-                Follow Our Instagram</h4>
-              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Direct message us anytime
-                on Instagram: <strong>@epicsjsu</strong> for real-time room updates and carpool coordinates.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ========================================================================
-       PAGE 5: EVENTS HUB & FLYER CREATOR STUDIO
+       PAGE 4: EVENTS HUB, ACTUAL CALENDAR VIEW & SAMPLE FLYERS STUDIO
        ======================================================================== -->
   <main id="events" class="tab-page">
     <section class="section-spacing">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Calendar & Gatherings</span>
-          <h1 class="section-title">What's happening at Epic.</h1>
-          <p class="section-description">Join us for weekly community rhythms and special events throughout the
-            semester.</p>
+          <h1 class="section-title">Events, Schedule &amp; Calendar.</h1>
+          <p class="section-description">Explore all real SJSU Epic events—including Wednesday Large Group (Big Group),
+            Monday &amp; Thursday Community Groups, KBBQ &amp; Boba Socials, and our Fall Retreat—in either an
+            interactive Calendar App view or Schedule List view.</p>
         </div>
 
         <!-- Weekly Recurring Events -->
         <div class="recurring-section">
-          <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 1.5rem;">Weekly Rhythms</h2>
+          <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 1.25rem;">Weekly Campus Rhythms</h2>
           <div class="recurring-grid">
             <div class="recurring-card">
-              <div class="recurring-day">Every Thursday</div>
-              <h3 class="recurring-name">Epic Large Group</h3>
+              <h3 class="recurring-name">Monday Community Group</h3>
+              <div class="recurring-day-badge">Every Monday &bull; 3:30 – 4:45 PM</div>
               <div class="recurring-time-loc">
-                7:00 PM – 8:45 PM<br>
-                SJSU Student Union, Meeting Room 2A<br>
-                <span style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-top: 6px;">Worship,
-                  student speaker, and post-meeting dinner.</span>
+                <strong>Location:</strong> SJSU Student Union Tables above Jamba Juice (between Jamba Juice &amp; Info
+                Center)<br>
+                <strong>Leaders:</strong> Jonathan Aye &amp; Jerry Wong (Book of Philippians)
               </div>
             </div>
 
             <div class="recurring-card">
-              <div class="recurring-day">Every Friday</div>
-              <h3 class="recurring-name">Fellowship & Food Runs</h3>
+              <h3 class="recurring-name">Wednesday Large Group (Big Group)</h3>
+              <div class="recurring-day-badge">Every Wednesday &bull; 5:00 – 6:30 PM</div>
               <div class="recurring-time-loc">
-                6:30 PM Onwards<br>
-                Rotates: San Carlos Street & Downtown SJ<br>
-                <span style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-top: 6px;">Board
-                  games, boba, and unwinding after a week of classes.</span>
+                <strong>Location:</strong> Dudley Moorhead Hall (DMH 231 &amp; DMH 359)<br>
+                <strong>Details:</strong> Community + Bible (BUILD &amp; SEND/SERVE Series) + Free Food!
               </div>
             </div>
 
             <div class="recurring-card">
-              <div class="recurring-day">Every Sunday</div>
-              <h3 class="recurring-name">Sunday Church Carpools</h3>
+              <h3 class="recurring-name">Thursday Community Group</h3>
+              <div class="recurring-day-badge">Every Thursday &bull; 2:30 – 3:45 PM</div>
               <div class="recurring-time-loc">
-                Departing 9:15 AM & 10:45 AM<br>
-                Pickup: Campus Village Circle / 10th St<br>
-                <span style="font-size: 0.82rem; color: var(--text-muted); display: block; margin-top: 6px;">Rides
-                  provided to local partner churches in San José.</span>
+                <strong>Location:</strong> SJSU Student Union Tables above Jamba Juice (between Jamba Juice &amp; Info
+                Center)<br>
+                <strong>Leaders:</strong> Nathan Wong &amp; Kadin (Book of Philippians)
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Interactive Calendar -->
+        <!-- Interactive Calendar Container (Calendar App View + List View Toggle) -->
         <div class="calendar-container">
           <div class="calendar-header-bar">
-            <div class="calendar-month-title">Semester Schedule Overview</div>
-            <div class="calendar-filter-chips">
-              <button class="cal-chip active" data-category="all">All Events</button>
-              <button class="cal-chip" data-category="worship">Large Group</button>
-              <button class="cal-chip" data-category="social">Socials</button>
-              <button class="cal-chip" data-category="retreat">Retreats</button>
+            <div>
+              <h2 class="calendar-month-title">Epic SJSU Event Calendar</h2>
+              <p class="calendar-subtitle">Filter by Event Type or switch between Calendar Grid View and List View</p>
+            </div>
+
+            <div class="calendar-controls-right">
+              <!-- View Mode Switcher: Actual Calendar Grid vs List View -->
+              <div class="calendar-view-toggle" role="group" aria-label="Calendar View Mode">
+                <button id="btnViewCalendarGrid" class="view-toggle-btn active" data-view="grid" type="button">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Calendar App View</span>
+                </button>
+                <button id="btnViewCalendarList" class="view-toggle-btn" data-view="list" type="button">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                  <span>Schedule List View</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="calendar-events-list">
-            <!-- Event 1 -->
-            <div class="event-row-card" data-category="worship">
-              <div class="event-date-box">
-                <span class="event-date-month">Nov</span>
-                <span class="event-date-day">12</span>
-              </div>
-              <div>
-                <h4 class="event-title">Epic Large Group: "Finding Purpose in Chaos"</h4>
-                <div class="event-meta">
-                  <span>Thursday • 7:00 PM</span>
-                  <span>•</span>
-                  <span>Student Union 2A</span>
-                  <span class="event-tag-pill">Worship</span>
-                </div>
-              </div>
-              <div>
-                <button class="btn-secondary btn-rsvp" data-rsvpd="false">
-                  <span class="rsvp-status">RSVP</span> (<span class="rsvp-count">38</span>)
+          <!-- Event Type Filter Bar -->
+          <div class="calendar-filter-row">
+            <div class="calendar-filter-chips">
+              <button class="cal-chip active" data-category="all" type="button">All Event Types</button>
+              <button class="cal-chip" data-category="big-group" type="button">Big Group (Large Group)</button>
+              <button class="cal-chip" data-category="community-group" type="button">Community Groups</button>
+              <button class="cal-chip" data-category="social" type="button">Socials &amp; Food</button>
+              <button class="cal-chip" data-category="retreat" type="button">Fall Retreat</button>
+            </div>
+            <div class="calendar-legend">
+              <span class="legend-item"><i class="legend-dot dot-big-group"></i> Big Group</span>
+              <span class="legend-item"><i class="legend-dot dot-community"></i> Community Group</span>
+              <span class="legend-item"><i class="legend-dot dot-social"></i> Social / Food</span>
+              <span class="legend-item"><i class="legend-dot dot-retreat"></i> Retreat</span>
+            </div>
+          </div>
+
+          <!-- VIEW 1: ACTUAL CALENDAR APP GRID VIEW -->
+          <div id="calendarAppGridView" class="calendar-app-view active">
+            <div class="cal-app-toolbar">
+              <div class="cal-app-nav">
+                <button id="calPrevMonth" class="cal-nav-btn" type="button" aria-label="Previous Month">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                  <span>Prev</span>
                 </button>
+                <h3 id="calCurrentMonthLabel" class="cal-current-month-label">October 2026</h3>
+                <button id="calNextMonth" class="cal-nav-btn" type="button" aria-label="Next Month">
+                  <span>Next</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+              <div class="cal-month-quick-pills">
+                <button class="cal-month-pill" data-year="2026" data-month="8" type="button">Sept 2026</button>
+                <button class="cal-month-pill active" data-year="2026" data-month="9" type="button">Oct 2026</button>
+                <button class="cal-month-pill" data-year="2026" data-month="10" type="button">Nov 2026</button>
               </div>
             </div>
 
-            <!-- Event 2 -->
-            <div class="event-row-card" data-category="social">
-              <div class="event-date-box">
-                <span class="event-date-month">Nov</span>
-                <span class="event-date-day">17</span>
+            <div class="cal-weekdays-header">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+
+            <!-- Dynamic Month Days Grid -->
+            <div id="calDaysGrid" class="cal-days-grid"></div>
+
+            <!-- Selected Day / Event Inspector Panel -->
+            <div id="calDayInspector" class="cal-day-inspector">
+              <div class="cal-inspector-header">
+                <h4 id="calInspectorTitle" class="cal-inspector-title">Selected Day Events</h4>
+                <span id="calInspectorSubtitle" class="cal-inspector-sub">Click any day or event on the calendar above
+                  to view full locations, times, and sign-up links.</span>
               </div>
-              <div>
-                <h4 class="event-title">Freshman Night: Free Pizza & Game Tourney</h4>
-                <div class="event-meta">
-                  <span>Tuesday • 5:30 PM</span>
-                  <span>•</span>
-                  <span>Tower Lawn</span>
-                  <span class="event-tag-pill">Social</span>
+              <div id="calInspectorBody" class="cal-inspector-body"></div>
+            </div>
+          </div>
+
+          <!-- VIEW 2: SCHEDULE LIST VIEW -->
+          <div id="calendarListView" class="calendar-events-list" style="display: none;">
+            <!-- Populated dynamically from the unified real events dataset in app.js -->
+          </div>
+        </div>
+
+        <!-- Sample Flyers Section (Created in the General Style of Existing @epic_sjsu Flyers) -->
+        <div class="sample-flyers-section">
+          <div class="section-header" style="margin-bottom: 2rem;">
+            <h2 class="section-title" style="font-size: 2rem;">Sample Flyers &amp; @epic_sjsu Flyer Styles.</h2>
+            <p class="section-description">Designed in the signature styles of @epic_sjsu's existing Instagram flyers:
+              the Pastel Weekly 5-Day Grid, the Teal/Charcoal/Orange Semester Overview, and the Illustrated Food &amp;
+              Retreat Posters.</p>
+          </div>
+
+          <div class="sample-flyers-grid">
+            <!-- Sample Flyer 1: Pastel Weekly Schedule Grid Style (like DfBVswdBO0p / Deqm7a1BzAM) -->
+            <div class="sample-flyer-card">
+              <div class="sample-flyer-preview pastel-grid-flyer">
+                <div class="pgf-top">
+                  <span class="pgf-date">Nov 2–Nov 8</span>
+                  <span class="pgf-headline">Epic SJSU invites you!</span>
+                  <img class="pgf-logo" src="assets/ig/epic-ig-profile.jpg" alt="Epic Movement Logo">
+                </div>
+                <div class="pgf-grid">
+                  <div class="pgf-box pgf-mon">
+                    <div class="pgf-day">Monday</div>
+                    <div class="pgf-text">Community Group/<br>Bible Study<br>3:30–4:30pm<br>Student Union Tables between
+                      Jamba Juice and Info Center!</div>
+                  </div>
+                  <div class="pgf-box pgf-tue">
+                    <div class="pgf-day">Tuesday</div>
+                    <div class="pgf-text">1-on-1 Mentoring &amp; Prayer Walks<br>By Appointment</div>
+                  </div>
+                  <div class="pgf-box pgf-wed">
+                    <div class="pgf-day">Wednesday</div>
+                    <div class="pgf-text">Weekly Large Group<br>Community + Bible<br><span class="pgf-green">Free
+                        Campus Dinner!</span><br>DMH 231<br>5–6:30pm</div>
+                  </div>
+                  <div class="pgf-box pgf-thu">
+                    <div class="pgf-day">Thursday</div>
+                    <div class="pgf-text">Community Group/<br>Bible Study<br>2:30–3:30pm<br>Student Union Tables between
+                      Jamba Juice and Info Center!</div>
+                  </div>
+                  <div class="pgf-box pgf-fri">
+                    <div class="pgf-day">Friday</div>
+                    <div class="pgf-text">Fall Retreat Prep &amp; Carpool Coordination</div>
+                  </div>
+                  <div class="pgf-qr-box">
+                    <svg viewBox="0 0 100 100" width="84" height="84" aria-label="Sample QR Code">
+                      <rect width="100" height="100" fill="#fff" />
+                      <rect x="8" y="8" width="26" height="26" fill="none" stroke="#000" stroke-width="6" />
+                      <rect x="16" y="16" width="10" height="10" fill="#000" />
+                      <rect x="66" y="8" width="26" height="26" fill="none" stroke="#000" stroke-width="6" />
+                      <rect x="74" y="16" width="10" height="10" fill="#000" />
+                      <rect x="8" y="66" width="26" height="26" fill="none" stroke="#000" stroke-width="6" />
+                      <rect x="16" y="74" width="10" height="10" fill="#000" />
+                      <rect x="44" y="12" width="8" height="8" fill="#000" />
+                      <rect x="44" y="28" width="8" height="16" fill="#000" />
+                      <rect x="12" y="44" width="16" height="8" fill="#000" />
+                      <rect x="36" y="44" width="24" height="8" fill="#000" />
+                      <rect x="68" y="44" width="16" height="8" fill="#000" />
+                      <rect x="44" y="60" width="12" height="12" fill="#000" />
+                      <rect x="64" y="64" width="24" height="8" fill="#000" />
+                      <rect x="64" y="80" width="12" height="12" fill="#000" />
+                      <rect x="82" y="76" width="10" height="16" fill="#000" />
+                    </svg>
+                  </div>
                 </div>
               </div>
-              <div>
-                <button class="btn-secondary btn-rsvp" data-rsvpd="false">
-                  <span class="rsvp-status">RSVP</span> (<span class="rsvp-count">52</span>)
-                </button>
+              <div class="sample-flyer-caption">
+                <strong>Sample Style 1:</strong> Weekly 5-Day Pastel Schedule Grid (modeled after @epic_sjsu's weekly
+                Oct 5–Nov 1 schedule graphics).
               </div>
             </div>
 
-            <!-- Event 3 -->
-            <div class="event-row-card" data-category="social">
-              <div class="event-date-box">
-                <span class="event-date-month">Nov</span>
-                <span class="event-date-day">20</span>
-              </div>
-              <div>
-                <h4 class="event-title">Boba & Board Games Social</h4>
-                <div class="event-meta">
-                  <span>Friday • 6:30 PM</span>
-                  <span>•</span>
-                  <span>MLK Library 2nd Floor Patio</span>
-                  <span class="event-tag-pill">Social</span>
+            <!-- Sample Flyer 2: BUILD / SEND-SERVE / COMMUNITY GROUPS Style (like Dee-aqgPOI_ / Ddn7ICbhVpf) -->
+            <div class="sample-flyer-card">
+              <div class="sample-flyer-preview build-send-flyer">
+                <div class="bsf-top">
+                  <img class="bsf-logo" src="assets/ig/epic-ig-profile.jpg" alt="Epic Movement Logo">
+                  <div class="bsf-banner">SJSU EPIC INVITES YOU TO:</div>
+                </div>
+                <div class="bsf-columns">
+                  <div class="bsf-box bsf-build">
+                    <div class="bsf-box-head">BUILD</div>
+                    <div class="bsf-box-body">
+                      <p><strong>WED LARGE GROUP:</strong><br>5–6:30 PM | DMH 231</p>
+                      <p><strong>NOV 13–15:</strong><br>Fall Retreat at Daybreak Camp (Felton, CA) • Speaker: Young Lee
+                      </p>
+                    </div>
+                  </div>
+                  <div class="bsf-right-col">
+                    <div class="bsf-box bsf-send">
+                      <div class="bsf-box-head">SEND/SERVE</div>
+                      <div class="bsf-box-body">
+                        <p>Share Your Story &amp; Campus Fellowship<br>5–6:30 PM | DMH 231</p>
+                      </div>
+                    </div>
+                    <div class="bsf-box bsf-comm">
+                      <div class="bsf-box-head">COMMUNITY GROUPS</div>
+                      <div class="bsf-box-body">
+                        <p><strong>Tables above Jamba Juice</strong><br>MON: 3:30–4:45 PM<br>THUR: 2:30–3:45 PM</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bsf-footer">
+                  <div class="bsf-foot-left">
+                    <strong>GET CONNECTED</strong><br>
+                    Instagram: @Epic_SJSU<br>
+                    Jerry Wong: 925 997-1083<br>
+                    Nathan Wong: 925 339-5010<br>
+                    Johnathan Aye: 209 740-7102
+                  </div>
+                  <div class="bsf-foot-right">
+                    <strong>OUR PARTNERING CHURCH</strong>
+                    <div class="bsf-church-pill">
+                      Southbay Community Baptist Church<br>
+                      Pastor Rob Jeon: 925 872-6112<br>
+                      <span>English Service: 10 AM</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div>
-                <button class="btn-secondary btn-rsvp" data-rsvpd="false">
-                  <span class="rsvp-status">RSVP</span> (<span class="rsvp-count">44</span>)
-                </button>
-              </div>
-            </div>
-
-            <!-- Event 4 -->
-            <div class="event-row-card" data-category="retreat">
-              <div class="event-date-box">
-                <span class="event-date-month">Nov</span>
-                <span class="event-date-day">27</span>
-              </div>
-              <div>
-                <h4 class="event-title">Annual Fall Mountain Retreat: "Rooted"</h4>
-                <div class="event-meta">
-                  <span>Nov 27 – Nov 29</span>
-                  <span>•</span>
-                  <span>Santa Cruz Mountains Retreat Center</span>
-                  <span class="event-tag-pill">Retreat</span>
-                </div>
-              </div>
-              <div>
-                <button class="btn-secondary btn-rsvp" data-rsvpd="false">
-                  <span class="rsvp-status">RSVP</span> (<span class="rsvp-count">65</span>)
-                </button>
+              <div class="sample-flyer-caption">
+                <strong>Sample Style 2:</strong> BUILD / SEND-SERVE / COMMUNITY GROUPS + Partnering Church Footer
+                (modeled after @epic_sjsu's semester overview flyers).
               </div>
             </div>
           </div>
@@ -791,19 +924,18 @@
         <!-- State A: Locked (Not Signed In) -->
         <div id="flyerStudioLocked" class="flyer-studio-locked">
           <div style="max-width: 580px; margin: 0 auto;">
-            <div
-              style="width: 48px; height: 48px; background: rgba(212,175,55,0.18); color: var(--gold-400); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+            <div class="locked-icon-circle">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
             </div>
-            <h3 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 0.75rem;">Leader Portal: Flyer
-              Creator Studio</h3>
-            <p style="color: var(--silver-300); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">Verified
-              student leaders can access our interactive Canva-style design studio to generate, customize, and print
-              high-resolution promotional flyers for campus bulletins and social media.</p>
-            <button id="btnUnlockStudio" class="btn-primary">
+            <h2 style="font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 0.75rem; color: #fff;">Leader
+              Portal: @epic_sjsu Flyer Creator Studio</h2>
+            <p style="color: var(--silver-300); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem;">Student
+              leaders (Nathan Wong, Jonathan Aye, and club staff Jerry Wong) can sign in to customize and export sample
+              flyers modeled after @epic_sjsu's Instagram designs.</p>
+            <button id="btnUnlockStudio" class="btn-primary" type="button">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
@@ -815,15 +947,15 @@
 
         <!-- State B: Active (Signed In) -->
         <div id="flyerStudioActive" class="flyer-studio-active">
-          <div
-            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--silver-200); padding-bottom: 1rem;">
+          <div class="studio-top-bar">
             <div>
-              <span class="section-tag" style="margin-bottom: 4px;">Canva Studio</span>
-              <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--navy-900);">Event Flyer
-                Designer</h3>
+              <h2 style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--navy-900);">@epic_sjsu Event
+                Flyer Designer</h2>
+              <p style="font-size: 0.88rem; color: var(--text-secondary);">Create print &amp; Instagram flyers using our
+                real SJSU Epic templates, locations, and leadership contacts.</p>
             </div>
             <div style="font-size: 0.85rem; color: var(--text-secondary);">
-              Format: Standard 8.5x11 Print & Digital Poster
+              Format: Instagram &amp; Campus Poster
             </div>
           </div>
 
@@ -831,63 +963,67 @@
             <!-- Controls / Form -->
             <div class="studio-controls">
               <div class="form-group">
-                <label class="form-label" for="flyerSelectTemplate">Load Template Preset</label>
+                <label class="form-label" for="flyerSelectTemplate">Load @epic_sjsu Flyer Preset</label>
                 <select class="form-select" id="flyerSelectTemplate">
-                  <option value="large_group">Epic Large Group Gathering</option>
-                  <option value="boba_social">Boba & Board Games Social</option>
-                  <option value="freshman_welcome">Freshman Welcome & Pizza Night</option>
-                  <option value="fall_retreat">Fall Camp Mountain Retreat</option>
+                  <option value="large_group">Wednesday Large Group (Campus Burgers • DMH 231)</option>
+                  <option value="boba_kfc">Boba Bar &amp; KFC Chicken Social (DMH 231)</option>
+                  <option value="kbbq_social">SJSU Epic KBBQ Social (Student Union Outside Tables)</option>
+                  <option value="community_groups">Community Groups (Student Union Above Jamba Juice)</option>
+                  <option value="fall_retreat">Epic Fall Retreat (Daybreak Camp • Felton, CA)</option>
                 </select>
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="flyerInputTitle">Event Headline</label>
-                <input class="form-input" type="text" id="flyerInputTitle" value="Epic Large Group">
+                <input class="form-input" type="text" id="flyerInputTitle" value="Weekly Wednesday Large Group!">
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="flyerInputSubtitle">Event Subtitle / Theme</label>
-                <input class="form-input" type="text" id="flyerInputSubtitle" value="Finding Purpose in College">
+                <label class="form-label" for="flyerInputSubtitle">Event Subtitle / Food &amp; Theme</label>
+                <input class="form-input" type="text" id="flyerInputSubtitle"
+                  value="Community + Bible • Free Campus Burgers!">
               </div>
 
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
                 <div class="form-group">
-                  <label class="form-label" for="flyerInputDate">Date</label>
-                  <input class="form-input" type="text" id="flyerInputDate" value="Thursday, Nov 12">
+                  <label class="form-label" for="flyerInputDate">Date / Day</label>
+                  <input class="form-input" type="text" id="flyerInputDate" value="Wednesday, Oct 28">
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="flyerInputTime">Time</label>
-                  <input class="form-input" type="text" id="flyerInputTime" value="7:00 PM - 8:45 PM">
+                  <input class="form-input" type="text" id="flyerInputTime" value="5:00 PM – 6:30 PM">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="flyerInputLocation">Campus Location</label>
-                <input class="form-input" type="text" id="flyerInputLocation" value="SJSU Student Union, Rm 2A">
+                <input class="form-input" type="text" id="flyerInputLocation" value="Dudley Moorhead Hall (DMH 231)">
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="flyerInputContact">Contact / Handle</label>
-                <input class="form-input" type="text" id="flyerInputContact" value="Instagram: @epicsjsu">
+                <label class="form-label" for="flyerInputContact">Contacts &amp; Partner Church</label>
+                <input class="form-input" type="text" id="flyerInputContact"
+                  value="Jerry: 925-997-1083 • Nathan: 925-339-5010 • Jonathan: 209-740-7102">
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="flyerSelectTheme">Flyer Color Palette</label>
+                <label class="form-label" for="flyerSelectTheme">Flyer Visual Style</label>
                 <select class="form-select" id="flyerSelectTheme">
-                  <option value="theme-classic">Collegiate Spartan Navy & Gold</option>
-                  <option value="theme-gold">Warm Golden Amber Accent</option>
-                  <option value="theme-slate">Midnight Slate & Silver</option>
+                  <option value="theme-epic-teal">Epic Movement Teal &amp; Warm Gold (@epic_sjsu)</option>
+                  <option value="theme-botanical">Botanical Watercolor &amp; Forest Green</option>
+                  <option value="theme-chalkboard">Chalkboard Boba &amp; Warm Amber</option>
                 </select>
               </div>
             </div>
 
             <!-- Live Canvas Preview Pane -->
             <div class="studio-preview-pane">
-              <div id="liveFlyerCanvas" class="flyer-canvas theme-classic">
+              <div id="liveFlyerCanvas" class="flyer-canvas theme-epic-teal">
                 <div class="flyer-header">
-                  <div class="flyer-org-tag">SAN JOSÉ STATE UNIVERSITY • EPIC</div>
-                  <h2 id="flyerDisplayTitle" class="flyer-title">Epic Large Group</h2>
-                  <div id="flyerDisplaySubtitle" class="flyer-subtitle">Finding Purpose in College</div>
+                  <img class="flyer-em-logo" src="assets/ig/epic-ig-profile.jpg" alt="Epic Movement SJSU Logo">
+                  <div class="flyer-org-tag">EPIC MOVEMENT AT SAN JOSÉ STATE • A CRU MINISTRY</div>
+                  <h3 id="flyerDisplayTitle" class="flyer-title">Weekly Wednesday Large Group!</h3>
+                  <div id="flyerDisplaySubtitle" class="flyer-subtitle">Community + Bible • Free Campus Burgers!</div>
                 </div>
 
                 <div class="flyer-body">
@@ -898,40 +1034,44 @@
                       <line x1="8" y1="2" x2="8" y2="6"></line>
                       <line x1="3" y1="10" x2="21" y2="10"></line>
                     </svg>
-                    <span id="flyerDisplayDate">Thursday, Nov 12</span>
+                    <span id="flyerDisplayDate">Wednesday, Oct 28</span>
                   </div>
                   <div class="flyer-detail-item">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="10"></circle>
                       <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
-                    <span id="flyerDisplayTime">7:00 PM - 8:45 PM</span>
+                    <span id="flyerDisplayTime">5:00 PM – 6:30 PM</span>
                   </div>
                   <div class="flyer-detail-item">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                       <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <span id="flyerDisplayLocation">SJSU Student Union, Rm 2A</span>
+                    <span id="flyerDisplayLocation">Dudley Moorhead Hall (DMH 231)</span>
                   </div>
                   <div class="flyer-detail-item">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="12" cy="12" r="4"></circle>
-                      <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z">
+                      </path>
                     </svg>
-                    <span id="flyerDisplayContact">Instagram: @epicsjsu</span>
+                    <span id="flyerDisplayContact">Jerry: 925-997-1083 • Nathan: 925-339-5010 • Jonathan:
+                      209-740-7102</span>
                   </div>
                 </div>
 
                 <div class="flyer-footer">
-                  <div class="flyer-footer-text">ALL SJSU STUDENTS WELCOME</div>
-                  <div class="flyer-social-handle">epicsjsu.org • San José State University</div>
+                  <div class="flyer-footer-text">PARTNERED WITH SOUTHBAY COMMUNITY BAPTIST CHURCH (PASTOR ROB JEON)
+                  </div>
+                  <div class="flyer-social-handle">@epic_sjsu • Open to All SJSU Students!</div>
                 </div>
               </div>
 
               <!-- Export Controls -->
               <div class="studio-actions-bar">
-                <button id="btnDownloadFlyer" class="btn-primary" style="flex: 1; justify-content: center;">
+                <button id="btnDownloadFlyer" class="btn-primary" style="flex: 1; justify-content: center;"
+                  type="button">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="7 10 12 15 17 10"></polyline>
@@ -939,7 +1079,8 @@
                   </svg>
                   <span>Download PNG</span>
                 </button>
-                <button id="btnPrintFlyer" class="btn-secondary" style="flex: 1; justify-content: center;">
+                <button id="btnPrintFlyer" class="btn-secondary" style="flex: 1; justify-content: center;"
+                  type="button">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="6 9 6 2 18 2 18 9"></polyline>
                     <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
@@ -956,45 +1097,264 @@
   </main>
 
   <!-- ========================================================================
+       PAGE 5: PAST EVENTS ARCHIVE (ALL REAL PAST EVENTS FROM @epic_sjsu)
+       ======================================================================== -->
+  <main id="past-events" class="tab-page">
+    <section class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">Past Events Archive.</h1>
+          <p class="section-description">Every real past event, Weekly Large Group (Big Group), Community Group launch,
+            and campus social from the @epic_sjsu Instagram page, complete with original flyers, locations, and times.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn past-filter-btn active" data-past-filter="all" type="button">All Past
+            Events</button>
+          <button class="filter-btn past-filter-btn" data-past-filter="big-group" type="button">Big Group (Large
+            Group)</button>
+          <button class="filter-btn past-filter-btn" data-past-filter="community-group" type="button">Community
+            Groups</button>
+          <button class="filter-btn past-filter-btn" data-past-filter="social" type="button">Socials &amp; Food</button>
+        </div>
+
+        <div id="pastEventsGrid" class="past-events-grid">
+          <!-- Populated dynamically in app.js with all real past events & Instagram flyers -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PAGE 6: CONNECT (EMBEDDED INSTAGRAM BIO LINK + PROTOTYPE FORM)
+       ======================================================================== -->
+  <main id="connect" class="tab-page">
+    <section class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">Get Connected with Epic SJSU.</h1>
+          <p class="section-description">Fill out our official Instagram bio sign-up form below to join a Monday or
+            Thursday Community Group, connect with club staff <strong>Jerry Wong</strong> or student co-presidents
+            <strong>Nathan Wong</strong> and <strong>Jonathan Aye</strong>, or get rides to <strong>Southbay Community
+              Baptist Church</strong>.</p>
+        </div>
+
+        <div class="connect-grid">
+          <!-- Left Column: Embedded Link from Instagram Bio + Prototype Form -->
+          <div class="connect-form-card">
+            <div class="connect-form-header">
+              <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 0.35rem;">Fall 2026 Community Group
+                &amp; Connect Form</h2>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">Directly linked from
+                the <strong>@epic_sjsu</strong> Instagram bio:</p>
+
+              <div class="bio-link-banner">
+                <div class="bio-link-info">
+                  <strong>Instagram Bio Link (@epic_sjsu):</strong>
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform"
+                    target="_blank" rel="noopener" class="bio-link-url">
+                    docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform
+                  </a>
+                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform"
+                  target="_blank" rel="noopener" class="btn-primary btn-sm">
+                  <span>Open Bio Form</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Toggle between Quick Prototype Form and Live Embedded Google Form Iframe -->
+              <div class="form-mode-tabs">
+                <button id="btnShowProtoForm" class="form-mode-btn active" type="button">Interactive Prototype Form
+                  (Bio Questions)</button>
+                <button id="btnShowEmbeddedForm" class="form-mode-btn" type="button">Live Embedded Google Form</button>
+              </div>
+            </div>
+
+            <!-- Mode 1: Interactive Prototype Form synced with exact Instagram Bio Form questions -->
+            <div id="protoFormWrapper">
+              <div id="connectSuccessMsg" class="connect-success-alert" style="display: none;">
+                Thank you! Your sign-up has been recorded. You can also submit directly on the official Google Form from
+                our Instagram bio using the button above!
+              </div>
+
+              <form id="connectIntakeForm">
+                <div class="form-group">
+                  <label class="form-label" for="connName">Name *</label>
+                  <input class="form-input" type="text" id="connName" required placeholder="Your full name">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="connEmail">Cell Phone Number *</label>
+                  <input class="form-input" type="tel" id="connEmail" required placeholder="e.g. (408) 555-0199">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="connMonday">Are you available to meet on Monday from 3:30–4:45 PM at
+                    the Tables above Jamba Juice in the Student Union? (Jonathan &amp; Jerry leading)</label>
+                  <select class="form-select" id="connMonday">
+                    <option value="Yes">Yes — Monday (3:30–4:45 PM, Student Union above Jamba Juice)</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="connThursday">Are you available to meet on Thursday from 2:30–3:45 PM
+                    at the Tables above Jamba Juice in the Student Union? (Nathan &amp; Kadin leading)</label>
+                  <select class="form-select" id="connThursday">
+                    <option value="Yes">Yes — Thursday (2:30–3:45 PM, Student Union above Jamba Juice)</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="connInterest">Also Interested In:</label>
+                  <select class="form-select" id="connInterest">
+                    <option>Wednesday Large Group (5:00–6:30 PM in DMH 231)</option>
+                    <option>Fall Retreat at Daybreak Camp, Felton CA (Nov 13–15)</option>
+                    <option>Sunday Rides to Southbay Community Baptist Church (10:00 AM)</option>
+                    <option>1-on-1 Coffee Chat with Jerry, Nathan, or Jonathan</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                  <span>Submit Community Group Sign-Up</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Mode 2: Embedded Google Form Iframe from Instagram Bio -->
+            <div id="embeddedFormWrapper" style="display: none;">
+              <iframe class="google-form-iframe"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform?embedded=true"
+                title="Epic SJSU Fall 2026 Community Group Sign Up (Instagram Bio Form)" loading="lazy">
+                Loading…
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Right Column: Real Campus Locations, Contacts, and Partnering Church -->
+          <div class="connect-info-card">
+            <h2 class="section-title" style="font-size: 1.6rem; margin-bottom: 1rem;">Real Campus Locations &amp;
+              Contacts</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">Find us every week on
+              the SJSU campus or reach out directly to our leadership team:</p>
+
+            <div class="location-item">
+              <div class="location-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <strong style="color: var(--navy-900); display: block; font-size: 0.95rem;">Dudley Moorhead Hall (DMH
+                  231 &amp; DMH 359)</strong>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Weekly Wednesday Large Group (Big Group)
+                  • 5:00 PM – 6:30 PM (Free dinner provided!)</span>
+              </div>
+            </div>
+
+            <div class="location-item">
+              <div class="location-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div>
+                <strong style="color: var(--navy-900); display: block; font-size: 0.95rem;">Diaz Compean Student Union
+                  (Tables Above Jamba Juice)</strong>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Between Jamba Juice &amp; Info
+                  Center/Bookstore • Mon (3:30–4:45 PM) &amp; Thu (2:30–3:45 PM) Community Groups</span>
+              </div>
+            </div>
+
+            <div class="location-item">
+              <div class="location-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M8 12h8"></path>
+                </svg>
+              </div>
+              <div>
+                <strong style="color: var(--navy-900); display: block; font-size: 0.95rem;">Student Union Outside
+                  Tables</strong>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Outdoor Korean BBQ socials &amp; campus
+                  fellowship (5:00–6:30 PM)</span>
+              </div>
+            </div>
+
+            <div class="contacts-directory-box">
+              <h3 class="contacts-box-heading">Club Leadership &amp; Affiliated Church</h3>
+              <ul class="contacts-list">
+                <li><strong>Club Staff:</strong> Jerry Wong &bull; <a href="tel:9259971083">(925) 997-1083</a></li>
+                <li><strong>Student Co-President:</strong> Nathan Wong &bull; <a href="tel:9253395010">(925)
+                    339-5010</a></li>
+                <li><strong>Student Co-President:</strong> Jonathan Aye &bull; <a href="tel:2097407102">(209)
+                    740-7102</a></li>
+                <li><strong>Affiliated Organization:</strong> Cru (Epic Movement)</li>
+                <li><strong>Affiliated Church:</strong> Southbay Community Baptist Church &bull; Pastor Rob Jeon (<a
+                    href="tel:9258726112">925-872-6112</a>) &bull; English Service Sundays 10:00 AM</li>
+              </ul>
+
+              <div class="additional-forms-row">
+                <a class="btn-secondary btn-sm" href="https://forms.gle/US4QeF1Xm72tfFgX8" target="_blank"
+                  rel="noopener">Fall Retreat Registration Form ($75)</a>
+                <a class="btn-secondary btn-sm" href="https://forms.gle/bUJn9vnoKUdm7x7b8" target="_blank"
+                  rel="noopener">Wednesday Large Group Meal Form</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
        Sign In Modal
        ======================================================================== -->
   <div id="loginModal" class="modal-backdrop">
     <div class="modal-window">
-      <button id="btnCloseModal" class="modal-close-btn" aria-label="Close modal">
+      <button id="btnCloseModal" class="modal-close-btn" aria-label="Close modal" type="button">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
 
-      <h3 class="modal-title">Student Leader Portal</h3>
-      <p class="modal-desc">Sign in with your SJSU leader credentials to unlock flyer tools and administrative features.
-      </p>
+      <h2 class="modal-title">Epic SJSU Leader Portal</h2>
+      <p class="modal-desc">Sign in as Club Staff (Jerry Wong) or Student Co-President (Nathan Wong / Jonathan Aye) to
+        unlock the Flyer Creator Studio.</p>
 
       <div class="demo-account-box">
-        <strong>Instant Testing (1-Click Sign In):</strong><br>
-        Click below to simulate logging in as Marcus Chen (Student Leader).
+        <strong>Instant Leader Sign-In:</strong><br>
+        Click below to sign in as Student Co-President Nathan Wong or Jonathan Aye.
       </div>
 
       <button id="btnDemoLogin" class="btn-primary"
-        style="width: 100%; justify-content: center; margin-bottom: 1.25rem;">
-        <span>1-Click Sign In as Leader</span>
+        style="width: 100%; justify-content: center; margin-bottom: 1.25rem;" type="button">
+        <span>1-Click Sign In (Nathan Wong / Jonathan Aye)</span>
       </button>
-
-      <div
-        style="text-align: center; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.25rem; position: relative;">
-        <span>OR SIGN IN WITH SJSU EMAIL</span>
-      </div>
 
       <form id="loginForm">
         <div class="form-group">
-          <label class="form-label" for="loginEmail">Email</label>
-          <input class="form-input" type="email" id="loginEmail" placeholder="leader@sjsu.edu"
-            value="marcus.chen@sjsu.edu">
+          <label class="form-label" for="loginEmail">Leader Email</label>
+          <input class="form-input" type="email" id="loginEmail" placeholder="nathan.wong@sjsu.edu"
+            value="nathan.wong@sjsu.edu">
         </div>
         <div class="form-group">
           <label class="form-label" for="loginPassword">Password</label>
-          <input class="form-input" type="password" id="loginPassword" value="password123">
+          <input class="form-input" type="password" id="loginPassword" value="epicsjsu2026">
         </div>
         <button type="submit" class="btn-secondary" style="width: 100%; justify-content: center; margin-top: 0.5rem;">
           Sign In
@@ -1004,39 +1364,20 @@
   </div>
 
   <!-- ========================================================================
-       Site Footer
+       Minimal Site Footer (Non-Redundant, Concise)
        ======================================================================== -->
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand-title">Epic SJSU</div>
-          <p class="footer-brand-text">A collegiate campus ministry community at San José State University. Affiliated
-            with Cru / Epic Movement.</p>
-        </div>
-        <div>
-          <div class="footer-col-title">Navigation</div>
-          <ul class="footer-links">
-            <li><a href="#welcome" data-target-tab="welcome">Welcome</a></li>
-            <li><a href="#about" data-target-tab="about">About Us</a></li>
-            <li><a href="#community" data-target-tab="community">Community & Life Groups</a></li>
-            <li><a href="#connect" data-target-tab="connect">Get Connected</a></li>
-            <li><a href="#events" data-target-tab="events">Events & Calendar</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Campus Hub</div>
-          <ul class="footer-links">
-            <li>San José State University</li>
-            <li>One Washington Square, San José, CA</li>
-            <li>Instagram: @epicsjsu</li>
-            <li>Affiliated with Cru Collegiate</li>
-          </ul>
-        </div>
+    <div class="container footer-minimal">
+      <div class="footer-min-left">
+        <img class="footer-min-icon" src="assets/ig/epic-ig-profile.jpg" alt="Epic SJSU Icon">
+        <span>&copy; 2026 Epic SJSU (Cru) &bull; Affiliated with Southbay Community Baptist Church (Pastor Rob
+          Jeon)</span>
       </div>
-      <div class="footer-bottom">
-        <div>&copy; 2026 Epic SJSU Campus Ministry. All rights reserved.</div>
-        <div>San José, California</div>
+      <div class="footer-min-links">
+        <a href="https://www.instagram.com/epic_sjsu/" target="_blank" rel="noopener">@epic_sjsu</a>
+        <span>&bull;</span>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform"
+          target="_blank" rel="noopener">Bio Sign-Up Form</a>
       </div>
     </div>
   </footer>
