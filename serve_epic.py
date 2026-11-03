@@ -17,5 +17,5 @@ class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 socketserver.TCPServer.allow_reuse_address = True
 with socketserver.TCPServer(("", PORT), NoCacheHTTPRequestHandler) as httpd:
-    print(f"Serving Epic SJSU from {DIRECTORY} on port {PORT} with zero caching...")
+    print(f"Serving Epic SJSU from {DIRECTORY} on port {PORT}. Open website on http://localhost:{PORT}.")
     httpd.serve_forever()
