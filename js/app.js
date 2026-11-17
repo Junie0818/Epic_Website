@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCommunityFilters();
   initEventCalendarAndPastEvents();
   initConnectForm();
-  initAuthAndFlyerStudio();
 });
 
 /* ==========================================================================
@@ -693,7 +692,7 @@ function initTabNavigation() {
   }
 
   const initialHash = window.location.hash.replace('#', '');
-  const validTabs = ['welcome', 'about', 'community', 'events', 'past-events', 'connect'];
+  const validTabs = ['welcome', 'about', 'events', 'past-events', 'connect'];
   if (initialHash && validTabs.includes(initialHash)) {
     switchTab(initialHash);
   }
@@ -1037,31 +1036,93 @@ function initEventCalendarAndPastEvents() {
     `).join('');
   }
 
+  // --- Special Past Events Highlights (Categories, Food Provided, Theme Went Over — No Flyers) ---
+  const SPECIAL_PAST_EVENTS = [
+    {
+      title: 'SEND/SERVE Large Group: Share Your Story',
+      displayDate: 'Wed, Oct 21, 2026',
+      category: 'large-group',
+      categoryLabel: 'Large Group',
+      food: 'Boba Milk Tea Bar & Korean Fried Chicken',
+      theme: 'SEND/SERVE Series – Personal Testimony, Evangelism & Sharing Your Faith'
+    },
+    {
+      title: 'Wednesday Large Group: Living with Purpose',
+      displayDate: 'Wed, Oct 28, 2026',
+      category: 'large-group',
+      categoryLabel: 'Large Group',
+      food: 'Free Campus Burgers',
+      theme: 'Christ-Centered Purpose & Identity with Guest Speaker Noah Qiu'
+    },
+    {
+      title: 'SJSU Epic KBBQ Social & Gathering',
+      displayDate: 'Wed, Oct 7, 2026',
+      category: 'social',
+      categoryLabel: 'Campus Social',
+      food: 'Korean BBQ (Bulgogi, Pork Belly & Sides)',
+      theme: 'Welcoming New Students & Building Authentic Fellowship Outdoors'
+    },
+    {
+      title: 'Wednesday Large Group: "Be a Living Sacrifice"',
+      displayDate: 'Wed, Sept 30, 2026',
+      category: 'large-group',
+      categoryLabel: 'Large Group',
+      food: 'Free Tacos',
+      theme: 'Romans 12:1–2 – "Be a Living Sacrifice" & Campus Ministry Fair'
+    },
+    {
+      title: 'After-Meeting Volleyball & Pizza Social',
+      displayDate: 'Wed, Sept 30, 2026',
+      category: 'social',
+      categoryLabel: 'Campus Social',
+      food: 'Pizza My Heart',
+      theme: 'Post-Meeting Fellowship & Campus Recreation'
+    },
+    {
+      title: 'Wednesday Large Group: BUILD Series Kickoff',
+      displayDate: 'Wed, Sept 23, 2026',
+      category: 'large-group',
+      categoryLabel: 'Large Group',
+      food: 'Free In-N-Out Burgers',
+      theme: 'BUILD Series – Foundations in Christ & Spiritual Growth in College'
+    },
+    {
+      title: 'Epic Weekly Meeting: "I Am the Good Shepherd"',
+      displayDate: 'Thu, Apr 13, 2023',
+      category: 'large-group',
+      categoryLabel: 'Large Group',
+      food: 'Fellowship Snacks & Refreshments',
+      theme: 'John 10:11 – The Good Shepherd Lays Down His Life for the Sheep'
+    }
+  ];
+
   // --- G. Render Past Events Page (#past-events) ---
   function renderPastEventsArchive(pastFilter = 'all') {
     if (!pastEventsGrid) return;
 
-    const pastEvents = EPIC_EVENTS.filter(ev =>
-      ev.isPast && (pastFilter === 'all' || ev.category === pastFilter)
-    ).slice().reverse(); // Most recent past events first
+    const filtered = SPECIAL_PAST_EVENTS.filter(ev =>
+      pastFilter === 'all' || ev.category === pastFilter
+    );
 
-    pastEventsGrid.innerHTML = pastEvents.map(ev => `
-      <article class="past-event-card" data-category="${ev.category}">
-        <div class="past-event-img-wrap">
-          <img src="${ev.flyerImg}" alt="${ev.title} Original @epic_sjsu Flyer" loading="lazy">
+    pastEventsGrid.innerHTML = filtered.map(ev => `
+      <article class="special-past-item" data-category="${ev.category}">
+        <div class="special-past-top">
+          <div class="special-past-title">${ev.title}</div>
+          <span class="special-past-date">${ev.displayDate}</span>
         </div>
-        <div class="past-event-body">
-          <div class="past-event-top">
-            <span class="event-type-badge badge-${ev.category}">${ev.badgeLabel}</span>
-            <span class="past-event-date">${ev.displayDate}</span>
+        <div class="special-past-body">
+          <div class="special-meta-row">
+            <span class="special-meta-label">Category:</span>
+            <span class="event-type-badge badge-${ev.category}">${ev.categoryLabel}</span>
           </div>
-          <h2 class="past-event-title">${ev.title}</h2>
-          <div class="past-event-meta">
-            <div><strong>Time:</strong> ${ev.time}</div>
-            <div><strong>Location:</strong> ${ev.location}</div>
-            <div><strong>Leaders / Speaker:</strong> ${ev.leaders}</div>
+          <div class="special-meta-row">
+            <span class="special-meta-label">Food Provided:</span>
+            <span class="special-food-badge">${ev.food}</span>
           </div>
-          <p class="past-event-desc">${ev.description}</p>
+          <div class="special-meta-row">
+            <span class="special-meta-label">Theme Went Over:</span>
+            <span>${ev.theme}</span>
+          </div>
         </div>
       </article>
     `).join('');
@@ -1083,32 +1144,11 @@ function initEventCalendarAndPastEvents() {
 }
 
 /* ==========================================================================
-   4. CONNECT FORM & EMBEDDED INSTAGRAM BIO FORM TOGGLE
+   4. CONNECT FORM
    ========================================================================== */
 function initConnectForm() {
-  const btnShowProtoForm = document.getElementById('btnShowProtoForm');
-  const btnShowEmbeddedForm = document.getElementById('btnShowEmbeddedForm');
-  const protoFormWrapper = document.getElementById('protoFormWrapper');
-  const embeddedFormWrapper = document.getElementById('embeddedFormWrapper');
-
   const form = document.getElementById('connectIntakeForm');
   const successAlert = document.getElementById('connectSuccessMsg');
-
-  if (btnShowProtoForm && btnShowEmbeddedForm && protoFormWrapper && embeddedFormWrapper) {
-    btnShowProtoForm.addEventListener('click', () => {
-      btnShowProtoForm.classList.add('active');
-      btnShowEmbeddedForm.classList.remove('active');
-      protoFormWrapper.style.display = 'block';
-      embeddedFormWrapper.style.display = 'none';
-    });
-
-    btnShowEmbeddedForm.addEventListener('click', () => {
-      btnShowEmbeddedForm.classList.add('active');
-      btnShowProtoForm.classList.remove('active');
-      embeddedFormWrapper.style.display = 'block';
-      protoFormWrapper.style.display = 'none';
-    });
-  }
 
   if (form && successAlert) {
     form.addEventListener('submit', (e) => {
@@ -1122,297 +1162,6 @@ function initConnectForm() {
   }
 }
 
-/* ==========================================================================
-   5. LEADER PORTAL AUTHENTICATION & @epic_sjsu FLYER CREATOR STUDIO
-   ========================================================================== */
-function initAuthAndFlyerStudio() {
-  let isLeaderLoggedIn = false;
 
-  const btnOpenLogin = document.getElementById('btnOpenLogin');
-  const btnUnlockStudio = document.getElementById('btnUnlockStudio');
-  const btnCloseModal = document.getElementById('btnCloseModal');
-  const loginModal = document.getElementById('loginModal');
-  const btnDemoLogin = document.getElementById('btnDemoLogin');
-  const loginForm = document.getElementById('loginForm');
-  const btnLogout = document.getElementById('btnLogout');
 
-  const authGuestView = document.getElementById('authGuestView');
-  const authUserView = document.getElementById('authUserView');
-  const loggedInLeaderName = document.getElementById('loggedInLeaderName');
-  const flyerStudioLocked = document.getElementById('flyerStudioLocked');
-  const flyerStudioActive = document.getElementById('flyerStudioActive');
 
-  function openModal() {
-    if (loginModal) loginModal.classList.add('open');
-  }
-
-  function closeModal() {
-    if (loginModal) loginModal.classList.remove('open');
-  }
-
-  function setLoggedInState(loggedIn, leaderLabel = 'Nathan Wong') {
-    isLeaderLoggedIn = loggedIn;
-
-    if (loggedIn) {
-      if (authGuestView) authGuestView.style.display = 'none';
-      if (authUserView) authUserView.style.display = 'flex';
-      if (loggedInLeaderName) loggedInLeaderName.textContent = leaderLabel;
-      if (flyerStudioLocked) flyerStudioLocked.style.display = 'none';
-      if (flyerStudioActive) flyerStudioActive.classList.add('unlocked');
-      closeModal();
-    } else {
-      if (authGuestView) authGuestView.style.display = 'flex';
-      if (authUserView) authUserView.style.display = 'none';
-      if (flyerStudioLocked) flyerStudioLocked.style.display = 'block';
-      if (flyerStudioActive) flyerStudioActive.classList.remove('unlocked');
-    }
-  }
-
-  if (btnOpenLogin) btnOpenLogin.addEventListener('click', openModal);
-  if (btnUnlockStudio) btnUnlockStudio.addEventListener('click', openModal);
-  if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
-
-  if (loginModal) {
-    loginModal.addEventListener('click', (e) => {
-      if (e.target === loginModal) closeModal();
-    });
-  }
-
-  if (btnDemoLogin) {
-    btnDemoLogin.addEventListener('click', () => {
-      setLoggedInState(true, 'Nathan Wong & Jonathan Aye');
-    });
-  }
-
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const emailInput = document.getElementById('loginEmail');
-      const emailVal = emailInput ? emailInput.value.toLowerCase() : '';
-      let leaderName = 'Nathan Wong';
-      if (emailVal.includes('jonathan')) leaderName = 'Jonathan Aye';
-      if (emailVal.includes('jerry')) leaderName = 'Jerry Wong';
-      setLoggedInState(true, leaderName);
-    });
-  }
-
-  if (btnLogout) {
-    btnLogout.addEventListener('click', () => {
-      setLoggedInState(false);
-    });
-  }
-
-  // --- Flyer Studio Controls ---
-  const selectTemplate = document.getElementById('flyerSelectTemplate');
-  const inputTitle = document.getElementById('flyerInputTitle');
-  const inputSubtitle = document.getElementById('flyerInputSubtitle');
-  const inputDate = document.getElementById('flyerInputDate');
-  const inputTime = document.getElementById('flyerInputTime');
-  const inputLocation = document.getElementById('flyerInputLocation');
-  const inputContact = document.getElementById('flyerInputContact');
-  const selectTheme = document.getElementById('flyerSelectTheme');
-
-  const displayTitle = document.getElementById('flyerDisplayTitle');
-  const displaySubtitle = document.getElementById('flyerDisplaySubtitle');
-  const displayDate = document.getElementById('flyerDisplayDate');
-  const displayTime = document.getElementById('flyerDisplayTime');
-  const displayLocation = document.getElementById('flyerDisplayLocation');
-  const displayContact = document.getElementById('flyerDisplayContact');
-  const liveFlyerCanvas = document.getElementById('liveFlyerCanvas');
-
-  const btnDownloadFlyer = document.getElementById('btnDownloadFlyer');
-  const btnPrintFlyer = document.getElementById('btnPrintFlyer');
-
-  const FLYER_PRESETS = {
-    large_group: {
-      title: 'Weekly Wednesday Large Group!',
-      subtitle: 'Community + Bible • Free Campus Burgers!',
-      date: 'Wednesday, Oct 28',
-      time: '5:00 PM – 6:30 PM',
-      location: 'Dudley Moorhead Hall (DMH 231)',
-      contact: 'Jerry: 925-997-1083 • Nathan: 925-339-5010 • Jonathan: 209-740-7102',
-      theme: 'theme-epic-teal'
-    },
-    boba_kfc: {
-      title: 'Share Your Story + Boba & KFC!',
-      subtitle: 'SEND/SERVE Night • Free DIY Boba Bar & KFC Chicken',
-      date: 'Wednesday, Oct 21',
-      time: '5:00 PM – 6:30 PM',
-      location: 'Dudley Moorhead Hall (DMH 231)',
-      contact: 'Jerry: 925-997-1083 • Nathan: 925-339-5010 • Jonathan: 209-740-7102',
-      theme: 'theme-chalkboard'
-    },
-    kbbq_social: {
-      title: 'SJSU Epic KBBQ Invites You!',
-      subtitle: 'Free Korean BBQ • Community & Fellowship',
-      date: 'Wednesday, Oct 7',
-      time: '5:00 PM – 6:30 PM',
-      location: 'Student Union Outside Tables',
-      contact: 'Jerry: 925-997-1083 • Nathan: 925-339-5010 • Jonathan: 209-740-7102',
-      theme: 'theme-epic-teal'
-    },
-    community_groups: {
-      title: 'Join Epic Community Groups!',
-      subtitle: 'Book of Philippians • Same Content, Join One!',
-      date: 'Mondays & Thursdays',
-      time: 'Mon 3:30–4:45 PM • Thu 2:30–3:45 PM',
-      location: 'SJSU Student Union Tables above Jamba Juice',
-      contact: 'Mon: Jonathan & Jerry • Thu: Nathan & Kadin',
-      theme: 'theme-botanical'
-    },
-    fall_retreat: {
-      title: 'Fall Retreat: Dream Big, Love Well',
-      subtitle: 'Speaker: Young Lee (Epic Mission Director) • $75',
-      date: 'Fri–Sun, Nov 13–15, 2026',
-      time: 'Meet 3:00 PM at SJSU ATMs (Leave 4:00 PM)',
-      location: 'Daybreak Camp in Felton, CA',
-      contact: 'Venmo @Nathan86091 • Jerry: 925-997-1083 • Jonathan: 209-740-7102',
-      theme: 'theme-botanical'
-    }
-  };
-
-  function syncCanvas() {
-    if (displayTitle && inputTitle) displayTitle.textContent = inputTitle.value;
-    if (displaySubtitle && inputSubtitle) displaySubtitle.textContent = inputSubtitle.value;
-    if (displayDate && inputDate) displayDate.textContent = inputDate.value;
-    if (displayTime && inputTime) displayTime.textContent = inputTime.value;
-    if (displayLocation && inputLocation) displayLocation.textContent = inputLocation.value;
-    if (displayContact && inputContact) displayContact.textContent = inputContact.value;
-
-    if (liveFlyerCanvas && selectTheme) {
-      liveFlyerCanvas.classList.remove('theme-epic-teal', 'theme-botanical', 'theme-chalkboard');
-      liveFlyerCanvas.classList.add(selectTheme.value);
-    }
-  }
-
-  [inputTitle, inputSubtitle, inputDate, inputTime, inputLocation, inputContact].forEach(el => {
-    if (el) el.addEventListener('input', syncCanvas);
-  });
-
-  if (selectTheme) {
-    selectTheme.addEventListener('change', syncCanvas);
-  }
-
-  if (selectTemplate) {
-    selectTemplate.addEventListener('change', () => {
-      const preset = FLYER_PRESETS[selectTemplate.value];
-      if (!preset) return;
-      if (inputTitle) inputTitle.value = preset.title;
-      if (inputSubtitle) inputSubtitle.value = preset.subtitle;
-      if (inputDate) inputDate.value = preset.date;
-      if (inputTime) inputTime.value = preset.time;
-      if (inputLocation) inputLocation.value = preset.location;
-      if (inputContact) inputContact.value = preset.contact;
-      if (selectTheme) selectTheme.value = preset.theme;
-      syncCanvas();
-    });
-  }
-
-  if (btnPrintFlyer) {
-    btnPrintFlyer.addEventListener('click', () => {
-      window.print();
-    });
-  }
-
-  if (btnDownloadFlyer) {
-    btnDownloadFlyer.addEventListener('click', () => {
-      exportFlyerToPNG({
-        title: inputTitle ? inputTitle.value : 'Epic SJSU Event',
-        subtitle: inputSubtitle ? inputSubtitle.value : '',
-        date: inputDate ? inputDate.value : '',
-        time: inputTime ? inputTime.value : '',
-        location: inputLocation ? inputLocation.value : '',
-        contact: inputContact ? inputContact.value : '',
-        theme: selectTheme ? selectTheme.value : 'theme-epic-teal'
-      });
-    });
-  }
-}
-
-/**
- * Renders the current Flyer Creator Studio settings onto a high-res HTML5 Canvas
- * and downloads a PNG image.
- */
-function exportFlyerToPNG(data) {
-  const canvas = document.createElement('canvas');
-  canvas.width = 1080;
-  canvas.height = 1350;
-  const ctx = canvas.getContext('2d');
-
-  const grad = ctx.createLinearGradient(0, 0, 1080, 1350);
-  if (data.theme === 'theme-botanical') {
-    grad.addColorStop(0, '#133A2B');
-    grad.addColorStop(0.55, '#1F5C44');
-    grad.addColorStop(1, '#0D261C');
-  } else if (data.theme === 'theme-chalkboard') {
-    grad.addColorStop(0, '#1C1917');
-    grad.addColorStop(0.6, '#292524');
-    grad.addColorStop(1, '#0C0A09');
-  } else {
-    grad.addColorStop(0, '#0B3B49');
-    grad.addColorStop(0.55, '#135466');
-    grad.addColorStop(1, '#07222B');
-  }
-
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, 1080, 1350);
-
-  ctx.strokeStyle = 'rgba(245, 166, 35, 0.45)';
-  ctx.lineWidth = 4;
-  ctx.strokeRect(50, 50, 980, 1250);
-
-  ctx.fillStyle = '#F5A623';
-  ctx.font = 'bold 24px Inter, sans-serif';
-  ctx.fillText('EPIC MOVEMENT AT SAN JOSE STATE • A CRU MINISTRY', 100, 140);
-
-  ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 64px Georgia, serif';
-  wrapCanvasText(ctx, data.title, 100, 250, 880, 76);
-
-  ctx.fillStyle = '#F7C96E';
-  ctx.font = '600 32px Inter, sans-serif';
-  wrapCanvasText(ctx, data.subtitle, 100, 440, 880, 44);
-
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-  ctx.fillRect(100, 540, 880, 460);
-
-  ctx.fillStyle = '#FFFFFF';
-  ctx.font = 'bold 32px Inter, sans-serif';
-  ctx.fillText(`DATE:      ${data.date}`, 150, 640);
-  ctx.fillText(`TIME:      ${data.time}`, 150, 730);
-  ctx.fillText(`LOCATION:  ${data.location}`, 150, 820);
-  ctx.font = '600 26px Inter, sans-serif';
-  ctx.fillText(`CONTACTS:  ${data.contact}`, 150, 910);
-
-  ctx.fillStyle = '#CBD5E1';
-  ctx.font = 'bold 22px Inter, sans-serif';
-  ctx.fillText('PARTNERING CHURCH: SOUTHBAY COMMUNITY BAPTIST CHURCH (PASTOR ROB JEON)', 100, 1130);
-
-  ctx.fillStyle = '#F5A623';
-  ctx.font = 'bold 30px Georgia, serif';
-  ctx.fillText('@epic_sjsu • Open to All SJSU Students!', 100, 1190);
-
-  const link = document.createElement('a');
-  link.download = 'epic-sjsu-flyer.png';
-  link.href = canvas.toDataURL('image/png');
-  link.click();
-}
-
-function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
-  const words = (text || '').split(' ');
-  let line = '';
-  let currentY = y;
-
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > maxWidth && n > 0) {
-      ctx.fillText(line, x, currentY);
-      line = words[n] + ' ';
-      currentY += lineHeight;
-    } else {
-      line = testLine;
-    }
-  }
-  ctx.fillText(line, x, currentY);
-}
