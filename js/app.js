@@ -1,51 +1,95 @@
 /**
  * ============================================================================
- * EPIC MOVEMENT AT SJSU (A CRU MINISTRY) — APPLICATION CONTROLLER
+ * EPIC SJSU — APPLICATION CONTROLLER
  * ============================================================================
  * Handles:
- * 1. Multi-Tab SPA Navigation & URL Hash Routing (Welcome, About, Community, Events, Past Events, Connect)
- * 2. Community Group & Weekly Gathering Category Filtering
- * 3. Interactive Event Calendar:
- *    - Actual Calendar App Grid View (Monthly 7-day grid with events under specific days + Day Inspector)
- *    - Schedule List View
- *    - Event Type Filters (Big Group, Community Group, Social & Food, Fall Retreat)
- * 4. Past Events Archive Page (#past-events) with all real @epic_sjsu events & original flyers
- * 5. Connect Form Mode Switcher (Interactive Prototype Bio Form + Live Embedded Google Form)
- * 6. Leader Portal Authentication (Nathan Wong, Jonathan Aye, Jerry Wong) & Flyer Creator Studio
+ * 1. Multi-Tab SPA Navigation & URL Hash Routing
+ *    (Welcome, About Us, Spiritual Growth, Events, Past Events, Connect)
+ * 2. About Us Community Photo Gallery loader (from images/)
+ * 3. Gathering Category Filtering
+ * 4. Interactive Event Calendar (Grid View + Schedule List View + Sunday Church Services)
+ * 5. Past Events Highlights Page (#past-events)
+ * 6. Connect Intake Form
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initTabNavigation();
+  initAboutPhotos();
   initCommunityFilters();
   initEventCalendarAndPastEvents();
   initConnectForm();
 });
 
+/* Static manifest for photos in Epic_Website/images/ (works on both static hosting & serve_epic.py) */
+const ABOUT_PHOTOS_MANIFEST = [
+  { src: 'images/original.jpg', alt: 'Epic SJSU students smiling together during a nature hike' },
+  { src: 'images/original (1).jpg', alt: 'Epic SJSU campus tabling welcome booth with snacks' },
+  { src: 'images/original (2).jpg', alt: 'Students grilling Korean BBQ together at campus outdoor tables' },
+  { src: 'images/original.jpeg', alt: 'Epic SJSU group snack run together' },
+  { src: 'images/original (1).jpeg', alt: 'Epic SJSU group photo outdoors at Fall Retreat' },
+  { src: 'images/original (2).jpeg', alt: 'Fellowship at the SJSU Student Union outdoor tables' },
+  { src: 'images/original (3).jpeg', alt: 'Sharing a campus Korean BBQ meal outside the Student Union' },
+  { src: 'images/original (4).jpeg', alt: 'Evening teaching and worship fellowship together' }
+];
+
 /* ==========================================================================
-   REAL @epic_sjsu EVENTS DATASET (BIG GROUPS, COMMUNITY GROUPS, SOCIALS, RETREAT)
+   REAL @epic_sjsu & SUNDAY CHURCH SERVICE EVENTS DATASET
    ========================================================================== */
 const EPIC_EVENTS = [
-  // --- APRIL 2023 ARCHIVE EVENT (FROM @epic_sjsu IG FEED) ---
+  // --- SEPTEMBER 2026 SUNDAY CHURCH SERVICES ---
   {
-    id: 'evt-2023-04-04-good-shepherd',
-    title: 'Epic Weekly Meeting: "I Am the Good Shepherd"',
-    category: 'big-group',
-    badgeLabel: 'Big Group • Weekly Meeting',
-    dateStr: '2023-04-04',
-    displayDate: 'Tue, Apr 4, 2023',
-    monthAbbr: 'Apr',
-    dayNum: '04',
-    time: '7:00 PM – 8:30 PM',
-    location: 'SJSU Student Union Meeting Room 1B',
-    leaders: 'Speaker: Pastor Matt Chiu',
-    description: 'Join us at our weekly meeting to hear from Pastor Matt Chiu speak on how Jesus is our Good Shepherd! Come for the fellowship and learning how to trust in a God who unconditionally cares for us.',
-    flyerImg: 'assets/ig/post_Cqlxrx9JoV_.jpg',
-    formUrl: 'https://www.instagram.com/p/Cqlxrx9JoV_/',
-    formLabel: 'View Original Instagram Post',
+    id: 'evt-2026-09-06-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-09-06',
+    displayDate: 'Sun, Sept 6, 2026',
+    monthAbbr: 'Sep',
+    dayNum: '06',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
+  },
+  {
+    id: 'evt-2026-09-13-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-09-13',
+    displayDate: 'Sun, Sept 13, 2026',
+    monthAbbr: 'Sep',
+    dayNum: '13',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
+  },
+  {
+    id: 'evt-2026-09-20-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-09-20',
+    displayDate: 'Sun, Sept 20, 2026',
+    monthAbbr: 'Sep',
+    dayNum: '20',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
     isPast: true
   },
 
-  // --- SEPTEMBER 2026 REAL EVENTS ---
+  // --- SEPTEMBER 2026 CAMPUS EVENTS ---
   {
     id: 'evt-2026-09-21-mon-cg',
     title: 'Monday Community Group Launch (Book of Philippians)',
@@ -68,7 +112,7 @@ const EPIC_EVENTS = [
     id: 'evt-2026-09-22-in-n-out',
     title: 'Weekly Wednesday Large Group + Free In-N-Out!',
     category: 'big-group',
-    badgeLabel: 'Big Group • BUILD Series',
+    badgeLabel: 'Large Group • BUILD Series',
     dateStr: '2026-09-22',
     displayDate: 'Tue/Wed, Sept 22–23, 2026',
     monthAbbr: 'Sep',
@@ -86,7 +130,7 @@ const EPIC_EVENTS = [
     id: 'evt-2026-09-23-build-1',
     title: 'Wednesday Large Group: BUILD Series Kickoff',
     category: 'big-group',
-    badgeLabel: 'Big Group • BUILD',
+    badgeLabel: 'Large Group • BUILD',
     dateStr: '2026-09-23',
     displayDate: 'Wed, Sept 23, 2026',
     monthAbbr: 'Sep',
@@ -119,6 +163,23 @@ const EPIC_EVENTS = [
     isPast: true
   },
   {
+    id: 'evt-2026-09-27-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-09-27',
+    displayDate: 'Sun, Sept 27, 2026',
+    monthAbbr: 'Sep',
+    dayNum: '27',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
+  },
+  {
     id: 'evt-2026-09-28-mon-cg',
     title: 'Monday Community Group / Bible Study',
     category: 'community-group',
@@ -140,7 +201,7 @@ const EPIC_EVENTS = [
     id: 'evt-2026-09-30-living-sacrifice',
     title: 'Wednesday Large Group: "Be a Living Sacrifice" (Ministry Fair & Free Tacos!)',
     category: 'big-group',
-    badgeLabel: 'Big Group • Ministry Fair & Tacos',
+    badgeLabel: 'Large Group • Ministry Fair & Tacos',
     dateStr: '2026-09-30',
     displayDate: 'Wed, Sept 30, 2026',
     monthAbbr: 'Sep',
@@ -173,7 +234,7 @@ const EPIC_EVENTS = [
     isPast: true
   },
 
-  // --- OCTOBER 2026 REAL EVENTS ---
+  // --- OCTOBER 2026 EVENTS & SUNDAY CHURCH SERVICES ---
   {
     id: 'evt-2026-10-01-thu-cg',
     title: 'Thursday Community Group / Bible Study',
@@ -190,6 +251,23 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_Dd5IPJXB-gq.jpg',
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
     formLabel: 'Community Group Bio Form',
+    isPast: true
+  },
+  {
+    id: 'evt-2026-10-04-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-10-04',
+    displayDate: 'Sun, Oct 4, 2026',
+    monthAbbr: 'Oct',
+    dayNum: '04',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
     isPast: true
   },
   {
@@ -247,6 +325,23 @@ const EPIC_EVENTS = [
     isPast: true
   },
   {
+    id: 'evt-2026-10-11-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-10-11',
+    displayDate: 'Sun, Oct 11, 2026',
+    monthAbbr: 'Oct',
+    dayNum: '11',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
+  },
+  {
     id: 'evt-2026-10-12-mon-cg',
     title: 'Monday Community Group / Bible Study',
     category: 'community-group',
@@ -265,10 +360,10 @@ const EPIC_EVENTS = [
     isPast: true
   },
   {
-    id: 'evt-2026-10-14-build-midOct',
+    id: 'evt-2026-10-14-build-midoct',
     title: 'Wednesday Large Group: BUILD Series & Campus Dinner',
     category: 'big-group',
-    badgeLabel: 'Big Group • BUILD Series',
+    badgeLabel: 'Large Group • BUILD Series',
     dateStr: '2026-10-14',
     displayDate: 'Wed, Oct 14, 2026',
     monthAbbr: 'Oct',
@@ -301,6 +396,23 @@ const EPIC_EVENTS = [
     isPast: true
   },
   {
+    id: 'evt-2026-10-18-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-10-18',
+    displayDate: 'Sun, Oct 18, 2026',
+    monthAbbr: 'Oct',
+    dayNum: '18',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
+  },
+  {
     id: 'evt-2026-10-19-mon-cg',
     title: 'Monday Community Group / Bible Study',
     category: 'community-group',
@@ -322,7 +434,7 @@ const EPIC_EVENTS = [
     id: 'evt-2026-10-21-boba-kfc',
     title: 'SEND/SERVE Large Group: Share Your Story + Boba Bar & KFC Chicken!',
     category: 'big-group',
-    badgeLabel: 'Big Group • SEND/SERVE + Boba & KFC',
+    badgeLabel: 'Large Group • SEND/SERVE + Boba & KFC',
     dateStr: '2026-10-21',
     displayDate: 'Wed, Oct 21, 2026',
     monthAbbr: 'Oct',
@@ -355,6 +467,23 @@ const EPIC_EVENTS = [
     isPast: true
   },
   {
+    id: 'evt-2026-10-25-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-10-25',
+    displayDate: 'Sun, Oct 25, 2026',
+    monthAbbr: 'Oct',
+    dayNum: '25',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
+  },
+  {
     id: 'evt-2026-10-26-mon-cg',
     title: 'Monday Community Group / Bible Study',
     category: 'community-group',
@@ -376,7 +505,7 @@ const EPIC_EVENTS = [
     id: 'evt-2026-10-28-campus-burgers',
     title: 'Weekly Wednesday Large Group: Speaker Noah Qiu + Free Campus Burgers!',
     category: 'big-group',
-    badgeLabel: 'Big Group • Free Campus Burgers',
+    badgeLabel: 'Large Group • Free Campus Burgers',
     dateStr: '2026-10-28',
     displayDate: 'Wed, Oct 28, 2026',
     monthAbbr: 'Oct',
@@ -384,7 +513,7 @@ const EPIC_EVENTS = [
     time: '5:00 PM – 6:30 PM',
     location: 'Dudley Moorhead Hall (DMH 231)',
     leaders: 'Guest Speaker: Noah Qiu • Hosts: Nathan Wong & Jonathan Aye',
-    description: 'Join us Wednesday 5:00–6:30 PM in DMH 231! Our guest speaker is Noah Qiu, and we are providing free Campus Burgers for all who register on the form.',
+    description: 'Join us Wednesday 5:00–6:30 PM in DMH 231! Guest speaker Noah Qiu, plus free Campus Burgers for everyone who registers.',
     flyerImg: 'assets/ig/post_DfBVswdBO0p.jpg',
     formUrl: 'https://forms.gle/bUJn9vnoKUdm7x7b8',
     formLabel: 'Campus Burgers Form',
@@ -409,7 +538,24 @@ const EPIC_EVENTS = [
     isPast: true
   },
 
-  // --- NOVEMBER 2026 UPCOMING EVENTS ---
+  // --- NOVEMBER 2026 EVENTS & SUNDAY CHURCH SERVICES ---
+  {
+    id: 'evt-2026-11-01-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-11-01',
+    displayDate: 'Sun, Nov 1, 2026',
+    monthAbbr: 'Nov',
+    dayNum: '01',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
+  },
   {
     id: 'evt-2026-11-02-mon-cg',
     title: 'Monday Community Group / Bible Study (Philippians)',
@@ -426,13 +572,13 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_DdiSLJ5hwnz.jpg',
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
     formLabel: 'Sign Up via Bio Form',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-04-wed-lg',
-    title: 'Weekly Wednesday Large Group (Big Group) + Free Dinner',
+    title: 'Weekly Wednesday Large Group + Free Dinner',
     category: 'big-group',
-    badgeLabel: 'Big Group • BUILD Series',
+    badgeLabel: 'Large Group • BUILD Series',
     dateStr: '2026-11-04',
     displayDate: 'Wed, Nov 4, 2026',
     monthAbbr: 'Nov',
@@ -444,7 +590,7 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_DfBVswdBO0p.jpg',
     formUrl: 'https://forms.gle/bUJn9vnoKUdm7x7b8',
     formLabel: 'RSVP for Free Dinner',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-05-thu-cg',
@@ -462,7 +608,24 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_DdiSLJ5hwnz.jpg',
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
     formLabel: 'Sign Up via Bio Form',
-    isPast: false
+    isPast: true
+  },
+  {
+    id: 'evt-2026-11-08-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-11-08',
+    displayDate: 'Sun, Nov 8, 2026',
+    monthAbbr: 'Nov',
+    dayNum: '08',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
   },
   {
     id: 'evt-2026-11-09-mon-cg',
@@ -480,13 +643,13 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_DdiSLJ5hwnz.jpg',
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
     formLabel: 'Sign Up via Bio Form',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-11-wed-lg',
     title: 'Weekly Wednesday Large Group (Pre-Retreat Night!)',
     category: 'big-group',
-    badgeLabel: 'Big Group • Pre-Retreat Night',
+    badgeLabel: 'Large Group • Pre-Retreat Night',
     dateStr: '2026-11-11',
     displayDate: 'Wed, Nov 11, 2026',
     monthAbbr: 'Nov',
@@ -498,7 +661,7 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_Dee-aqgPOI_.jpg',
     formUrl: 'https://forms.gle/US4QeF1Xm72tfFgX8',
     formLabel: 'Fall Retreat Form',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-12-thu-cg',
@@ -516,7 +679,7 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_DdiSLJ5hwnz.jpg',
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
     formLabel: 'Sign Up via Bio Form',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-13-retreat-day1',
@@ -529,12 +692,12 @@ const EPIC_EVENTS = [
     dayNum: '13',
     time: 'Meet 3:00 PM at SJSU ATMs (Leave 4:00 PM)',
     location: 'Daybreak Camp in Felton, CA',
-    leaders: 'Guest Speaker: Young Lee (Epic Mission Director) • Jerry Wong & Jonathan Aye',
-    description: 'Fall Retreat Day 1! Meet at the SJSU ATMs at 3:00 PM to carpool to Daybreak Camp in Felton, CA. Includes 5 meals, 4 sessions with Young Lee, campfire, and cabins ($75; Venmo @Nathan86091).',
+    leaders: 'Guest Speaker: Young Lee • Jerry Wong & Jonathan Aye',
+    description: 'Fall Retreat Day 1! Meet at the SJSU ATMs at 3:00 PM to carpool to Daybreak Camp in Felton, CA. Includes 5 meals, 4 sessions with Young Lee, campfire, and cabins ($75; scholarships available).',
     flyerImg: 'assets/ig/post_DeshZ_ZpoS8.jpg',
     formUrl: 'https://forms.gle/US4QeF1Xm72tfFgX8',
     formLabel: 'Register for Fall Retreat ($75)',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-14-retreat-day2',
@@ -552,7 +715,7 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_DeuQP1BBLvN.jpg',
     formUrl: 'https://forms.gle/US4QeF1Xm72tfFgX8',
     formLabel: 'Register for Fall Retreat ($75)',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-15-retreat-day3',
@@ -564,13 +727,30 @@ const EPIC_EVENTS = [
     monthAbbr: 'Nov',
     dayNum: '15',
     time: '9:00 AM – 1:00 PM Return to SJSU',
-    location: 'Daybreak Camp in Felton, CA → SJSU',
+    location: 'Daybreak Camp in Felton, CA -> SJSU',
     leaders: 'Guest Speaker: Young Lee • Jerry Wong, Nathan Wong & Jonathan Aye',
     description: 'Final morning worship, testimony sharing, and return carpools back to San Jose State University.',
     flyerImg: 'assets/ig/post_DeshZ_ZpoS8.jpg',
     formUrl: 'https://forms.gle/US4QeF1Xm72tfFgX8',
-    formLabel: 'Register for Fall Retreat ($75)',
-    isPast: false
+    formLabel: 'Fall Retreat Details',
+    isPast: true
+  },
+  {
+    id: 'evt-2026-11-15-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-11-15',
+    displayDate: 'Sun, Nov 15, 2026',
+    monthAbbr: 'Nov',
+    dayNum: '15',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church (for students not away on Fall Retreat).',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: true
   },
   {
     id: 'evt-2026-11-16-mon-cg',
@@ -588,13 +768,13 @@ const EPIC_EVENTS = [
     flyerImg: 'assets/ig/post_DdiSLJ5hwnz.jpg',
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
     formLabel: 'Sign Up via Bio Form',
-    isPast: false
+    isPast: true
   },
   {
     id: 'evt-2026-11-18-wed-lg',
     title: 'Weekly Wednesday Large Group: Retreat Testimonies & Dinner',
     category: 'big-group',
-    badgeLabel: 'Big Group • BUILD Series',
+    badgeLabel: 'Large Group • BUILD Series',
     dateStr: '2026-11-18',
     displayDate: 'Wed, Nov 18, 2026',
     monthAbbr: 'Nov',
@@ -625,6 +805,76 @@ const EPIC_EVENTS = [
     formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
     formLabel: 'Sign Up via Bio Form',
     isPast: false
+  },
+  {
+    id: 'evt-2026-11-22-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-11-22',
+    displayDate: 'Sun, Nov 22, 2026',
+    monthAbbr: 'Nov',
+    dayNum: '22',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: false
+  },
+  {
+    id: 'evt-2026-11-23-mon-cg',
+    title: 'Monday Community Group / Bible Study (Philippians)',
+    category: 'community-group',
+    badgeLabel: 'Community Group',
+    dateStr: '2026-11-23',
+    displayDate: 'Mon, Nov 23, 2026',
+    monthAbbr: 'Nov',
+    dayNum: '23',
+    time: '3:30 PM – 4:45 PM',
+    location: 'SJSU Student Union Tables above Jamba Juice',
+    leaders: 'Jonathan Aye & Jerry Wong',
+    description: 'Weekly Monday Community Group in the Student Union above Jamba Juice.',
+    flyerImg: 'assets/ig/post_DdiSLJ5hwnz.jpg',
+    formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
+    formLabel: 'Sign Up via Bio Form',
+    isPast: false
+  },
+  {
+    id: 'evt-2026-11-29-church',
+    title: 'Sunday Church Service — Southbay Community Baptist Church',
+    category: 'church-service',
+    badgeLabel: 'Church Service',
+    dateStr: '2026-11-29',
+    displayDate: 'Sun, Nov 29, 2026',
+    monthAbbr: 'Nov',
+    dayNum: '29',
+    time: '10:00 AM – 11:30 AM',
+    location: 'Southbay Community Baptist Church, San José (Campus rides available)',
+    leaders: 'Pastor Rob Jeon: (925) 872-6112',
+    description: 'Weekly 10:00 AM English worship service with Pastor Rob Jeon at our partnering church. Free campus carpools available every Sunday morning.',
+    formUrl: '#connect',
+    formLabel: 'Request Sunday Ride',
+    isPast: false
+  },
+  {
+    id: 'evt-2026-11-30-mon-cg',
+    title: 'Monday Community Group / Bible Study (Philippians)',
+    category: 'community-group',
+    badgeLabel: 'Community Group',
+    dateStr: '2026-11-30',
+    displayDate: 'Mon, Nov 30, 2026',
+    monthAbbr: 'Nov',
+    dayNum: '30',
+    time: '3:30 PM – 4:45 PM',
+    location: 'SJSU Student Union Tables above Jamba Juice',
+    leaders: 'Jonathan Aye & Jerry Wong',
+    description: 'Weekly Monday Community Group in the Student Union above Jamba Juice.',
+    flyerImg: 'assets/ig/post_DdiSLJ5hwnz.jpg',
+    formUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdsBOZaDIZW6av3RSgOJg3xIUCQkpkpNxy1q4jrEqqCmj73sQ/viewform',
+    formLabel: 'Sign Up via Bio Form',
+    isPast: false
   }
 ];
 
@@ -634,8 +884,6 @@ const EPIC_EVENTS = [
 function initTabNavigation() {
   const navLinks = document.querySelectorAll('.nav-link[data-tab]');
   const tabPages = document.querySelectorAll('.tab-page');
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mainNavLinks = document.getElementById('mainNavLinks');
 
   function switchTab(targetTabId) {
     let found = false;
@@ -658,10 +906,6 @@ function initTabNavigation() {
       }
     });
 
-    if (mainNavLinks) {
-      mainNavLinks.classList.remove('mobile-open');
-    }
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (history.replaceState) {
@@ -670,7 +914,8 @@ function initTabNavigation() {
   }
 
   navLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
       const targetTab = link.getAttribute('data-tab');
       if (targetTab) switchTab(targetTab);
     });
@@ -685,21 +930,62 @@ function initTabNavigation() {
     }
   });
 
-  if (mobileMenuBtn && mainNavLinks) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mainNavLinks.classList.toggle('mobile-open');
-    });
-  }
-
   const initialHash = window.location.hash.replace('#', '');
-  const validTabs = ['welcome', 'about', 'events', 'past-events', 'connect'];
+  const validTabs = ['welcome', 'about', 'spiritual-growth', 'events', 'past-events', 'connect'];
   if (initialHash && validTabs.includes(initialHash)) {
     switchTab(initialHash);
   }
 }
 
 /* ==========================================================================
-   2. COMMUNITY GROUP & GATHERING FILTERS
+   2. ABOUT US COMMUNITY PHOTO GALLERY (FROM images/ FOLDER)
+   ========================================================================== */
+async function initAboutPhotos() {
+  const grid = document.getElementById('aboutPhotosGrid');
+  const statusEl = document.getElementById('aboutPhotosStatus');
+  if (!grid) return;
+
+  const seen = new Set();
+  const photos = [];
+  const addPhoto = (src, alt) => {
+    if (seen.has(src)) return;
+    seen.add(src);
+    photos.push({ src, alt: alt || `Epic SJSU community photo ${photos.length + 1}` });
+  };
+
+  ABOUT_PHOTOS_MANIFEST.forEach(item => addPhoto(item.src, item.alt));
+
+  try {
+    const res = await fetch('/api/images', { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.images)) {
+        data.images.forEach(path => addPhoto(path));
+      }
+    }
+  } catch {
+    // Fallback gracefully to static manifest when opened directly via file:// or static hosting
+  }
+
+  if (photos.length === 0) {
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.textContent = 'Photos added to the Epic_Website/images/ folder will automatically appear here.';
+    }
+    return;
+  }
+
+  if (statusEl) statusEl.style.display = 'none';
+
+  grid.innerHTML = photos.map(photo => `
+    <figure class="about-photo-card">
+      <img class="about-photo-img" src="${encodeURI(photo.src)}" alt="${photo.alt}" loading="lazy">
+    </figure>
+  `).join('');
+}
+
+/* ==========================================================================
+   3. COMMUNITY GROUP & GATHERING FILTERS
    ========================================================================== */
 function initCommunityFilters() {
   const filterBtns = document.querySelectorAll('.lifegroup-filter-btn');
@@ -725,7 +1011,7 @@ function initCommunityFilters() {
 }
 
 /* ==========================================================================
-   3. ACTUAL CALENDAR APP GRID VIEW + LIST VIEW + PAST EVENTS PAGE
+   4. INTERACTIVE CALENDAR APP GRID + LIST VIEW + PAST EVENTS
    ========================================================================== */
 function initEventCalendarAndPastEvents() {
   const btnViewGrid = document.getElementById('btnViewCalendarGrid');
@@ -747,16 +1033,15 @@ function initEventCalendarAndPastEvents() {
   const pastFilterBtns = document.querySelectorAll('.past-filter-btn');
   const pastEventsGrid = document.getElementById('pastEventsGrid');
 
-  // Supported months in the Calendar App View: Sept 2026 (8), Oct 2026 (9), Nov 2026 (10)
   const MONTHS_META = [
     { year: 2026, month: 8, label: 'September 2026' },
     { year: 2026, month: 9, label: 'October 2026' },
     { year: 2026, month: 10, label: 'November 2026' }
   ];
 
-  let currentMonthIdx = 1; // Default to October 2026 (where most flyers & weekly schedules live)
+  let currentMonthIdx = 2; // Default to November 2026
   let activeCategory = 'all';
-  let selectedDateStr = '2026-10-28';
+  let selectedDateStr = '2026-11-22';
 
   // --- A. Toggle between Calendar App Grid View and Schedule List View ---
   if (btnViewGrid && btnViewList && calendarAppGridView && calendarListView) {
@@ -808,7 +1093,6 @@ function initEventCalendarAndPastEvents() {
       }
     });
 
-    // Pick first date with events in that month for the inspector
     const monthPrefix = `${mMeta.year}-${String(mMeta.month + 1).padStart(2, '0')}`;
     const firstMatch = EPIC_EVENTS.find(ev =>
       ev.dateStr.startsWith(monthPrefix) &&
@@ -851,11 +1135,10 @@ function initEventCalendarAndPastEvents() {
     calDaysGrid.innerHTML = '';
 
     const { year, month } = MONTHS_META[currentMonthIdx];
-    const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 (Sun) to 6 (Sat)
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const prevMonthDays = new Date(year, month, 0).getDate();
 
-    // Leading days from previous month
     for (let i = firstDayOfMonth - 1; i >= 0; i--) {
       const emptyCell = document.createElement('div');
       emptyCell.className = 'cal-day-cell outside-month';
@@ -866,7 +1149,6 @@ function initEventCalendarAndPastEvents() {
       calDaysGrid.appendChild(emptyCell);
     }
 
-    // Actual days of the current month
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
       const dayEvents = EPIC_EVENTS.filter(ev =>
@@ -884,8 +1166,7 @@ function initEventCalendarAndPastEvents() {
       numRow.innerHTML = `<span>${day}</span>`;
       if (dayEvents.length > 0) {
         const countBadge = document.createElement('span');
-        countBadge.style.fontSize = '0.68rem';
-        countBadge.style.color = 'var(--navy-600)';
+        countBadge.className = 'cal-day-count';
         countBadge.textContent = `${dayEvents.length} ${dayEvents.length === 1 ? 'event' : 'events'}`;
         numRow.appendChild(countBadge);
       }
@@ -910,15 +1191,10 @@ function initEventCalendarAndPastEvents() {
       });
 
       cell.appendChild(eventsStack);
-
-      cell.addEventListener('click', () => {
-        selectDay(dateStr);
-      });
-
+      cell.addEventListener('click', () => selectDay(dateStr));
       calDaysGrid.appendChild(cell);
     }
 
-    // Trailing cells to complete the week row
     const totalCells = firstDayOfMonth + daysInMonth;
     const remainder = totalCells % 7;
     if (remainder !== 0) {
@@ -954,51 +1230,64 @@ function initEventCalendarAndPastEvents() {
     const formattedHeading = isNaN(parsedDate.getTime())
       ? dateStr
       : parsedDate.toLocaleDateString('en-US', {
-          weekday: 'long',
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric'
-        });
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
 
     calInspectorTitle.textContent = `Events on ${formattedHeading}`;
 
     if (matchingEvents.length === 0) {
       calInspectorSubtitle.textContent = 'No events scheduled for this specific day under the current filter.';
       calInspectorBody.innerHTML = `
-        <div style="font-size: 0.9rem; color: var(--text-secondary);">
-          Click on any highlighted Monday (Community Group), Wednesday (Large Group / Big Group), Thursday (Community Group), or Fri–Sun Nov 13–15 (Fall Retreat) cell on the calendar grid above to inspect full details and flyers.
+        <div class="cal-inspector-empty">
+          Click any highlighted Sunday (Church Service), Monday/Thursday (Community Group), Wednesday (Large Group), or Nov 13–15 (Fall Retreat) cell above for details.
         </div>
       `;
       return;
     }
 
-    calInspectorSubtitle.textContent = `Showing ${matchingEvents.length} scheduled ${matchingEvents.length === 1 ? 'gathering' : 'gatherings'} with real campus locations and times.`;
+    calInspectorSubtitle.textContent = `Showing ${matchingEvents.length} scheduled ${matchingEvents.length === 1 ? 'gathering' : 'gatherings'} with locations and times.`;
 
-    calInspectorBody.innerHTML = matchingEvents.map(ev => `
-      <div class="cal-inspector-event-card">
-        <img class="cal-inspector-thumb" src="${ev.flyerImg}" alt="${ev.title} Flyer">
-        <div>
-          <span class="event-type-badge badge-${ev.category}">${ev.badgeLabel}</span>
-          <h5 class="cal-inspector-event-title">${ev.title}</h5>
-          <div class="cal-inspector-meta">
-            <div><strong>Time:</strong> ${ev.time}</div>
-            <div><strong>Location:</strong> ${ev.location}</div>
-            <div><strong>Leadership:</strong> ${ev.leaders}</div>
-          </div>
-          <p class="cal-inspector-desc">${ev.description}</p>
-          <div style="margin-top: 0.75rem; display: flex; gap: 0.65rem; flex-wrap: wrap;">
-            <a class="btn-primary btn-sm" href="${ev.formUrl}" target="_blank" rel="noopener">${ev.formLabel}</a>
+    calInspectorBody.innerHTML = matchingEvents.map(ev => {
+      const isInternalAction = ev.formUrl && ev.formUrl.startsWith('#');
+      const actionAttr = isInternalAction
+        ? `data-target-tab="${ev.formUrl.slice(1)}"`
+        : 'target="_blank" rel="noopener noreferrer"';
+
+      const mediaBlock = ev.flyerImg
+        ? `<img class="cal-inspector-thumb" src="${ev.flyerImg}" alt="${ev.title}">`
+        : `<div class="cal-inspector-service-tile">
+             <span class="service-tile-day">${ev.monthAbbr} ${ev.dayNum}</span>
+             <span class="service-tile-label">${ev.badgeLabel}</span>
+           </div>`;
+
+      return `
+        <div class="cal-inspector-event-card">
+          ${mediaBlock}
+          <div>
+            <span class="event-type-badge badge-${ev.category}">${ev.badgeLabel}</span>
+            <h5 class="cal-inspector-event-title">${ev.title}</h5>
+            <div class="cal-inspector-meta">
+              <div><strong>Time:</strong> ${ev.time}</div>
+              <div><strong>Location:</strong> ${ev.location}</div>
+              <div><strong>Leadership:</strong> ${ev.leaders}</div>
+            </div>
+            <p class="cal-inspector-desc">${ev.description}</p>
+            <div class="cal-inspector-actions">
+              <a class="btn-primary btn-sm" href="${ev.formUrl}" ${actionAttr}>${ev.formLabel}</a>
+            </div>
           </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   // --- F. Render Schedule List View ---
   function renderScheduleListView() {
     if (!calendarListView) return;
 
-    // Show all 2026 semester events filtered by category
     const listEvents = EPIC_EVENTS.filter(ev =>
       ev.dateStr.startsWith('2026-') &&
       (activeCategory === 'all' || ev.category === activeCategory)
@@ -1013,30 +1302,37 @@ function initEventCalendarAndPastEvents() {
       return;
     }
 
-    calendarListView.innerHTML = listEvents.map(ev => `
-      <article class="cal-event-item" data-category="${ev.category}">
-        <div class="cal-date-box">
-          <span class="cal-date-month">${ev.monthAbbr}</span>
-          <span class="cal-date-day">${ev.dayNum}</span>
-        </div>
-        <div class="cal-event-info">
-          <span class="event-type-badge badge-${ev.category}">${ev.badgeLabel}</span>
-          <h3 class="cal-event-title">${ev.title}</h3>
-          <div class="cal-event-meta">
-            <span><strong>Date:</strong> ${ev.displayDate}</span>
-            <span><strong>Time:</strong> ${ev.time}</span>
-            <span><strong>Location:</strong> ${ev.location}</span>
+    calendarListView.innerHTML = listEvents.map(ev => {
+      const isInternalAction = ev.formUrl && ev.formUrl.startsWith('#');
+      const actionAttr = isInternalAction
+        ? `data-target-tab="${ev.formUrl.slice(1)}"`
+        : 'target="_blank" rel="noopener noreferrer"';
+
+      return `
+        <article class="cal-event-item" data-category="${ev.category}">
+          <div class="cal-date-box">
+            <span class="cal-date-month">${ev.monthAbbr}</span>
+            <span class="cal-date-day">${ev.dayNum}</span>
           </div>
-          <p class="cal-event-desc">${ev.description}</p>
-        </div>
-        <div class="cal-event-action">
-          <a href="${ev.formUrl}" target="_blank" rel="noopener" class="btn-secondary btn-sm">${ev.formLabel}</a>
-        </div>
-      </article>
-    `).join('');
+          <div class="cal-event-info">
+            <span class="event-type-badge badge-${ev.category}">${ev.badgeLabel}</span>
+            <h3 class="cal-event-title">${ev.title}</h3>
+            <div class="cal-event-meta">
+              <span><strong>Date:</strong> ${ev.displayDate}</span>
+              <span><strong>Time:</strong> ${ev.time}</span>
+              <span><strong>Location:</strong> ${ev.location}</span>
+            </div>
+            <p class="cal-event-desc">${ev.description}</p>
+          </div>
+          <div class="cal-event-action">
+            <a href="${ev.formUrl}" ${actionAttr} class="btn-secondary btn-sm">${ev.formLabel}</a>
+          </div>
+        </article>
+      `;
+    }).join('');
   }
 
-  // --- Special Past Events Highlights (Categories, Food Provided, Theme Went Over — No Flyers) ---
+  // --- Special Past Events Highlights ---
   const SPECIAL_PAST_EVENTS = [
     {
       title: 'SEND/SERVE Large Group: Share Your Story',
@@ -1137,14 +1433,14 @@ function initEventCalendarAndPastEvents() {
     });
   });
 
-  // Initial render
-  setMonthByIndex(1); // October 2026
+  // Initial render defaulting to November 2026
+  setMonthByIndex(2);
   renderScheduleListView();
   renderPastEventsArchive('all');
 }
 
 /* ==========================================================================
-   4. CONNECT FORM
+   5. CONNECT FORM
    ========================================================================== */
 function initConnectForm() {
   const form = document.getElementById('connectIntakeForm');
@@ -1161,7 +1457,3 @@ function initConnectForm() {
     });
   }
 }
-
-
-
-

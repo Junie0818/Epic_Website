@@ -1,44 +1,45 @@
 /* ==========================================================================
    Epic SJSU Campus Ministry — Design Tokens & Variables
-   Strict Compliance: Zero Emojis, Editorial Serif & Modern College Aesthetic
+   Palette: Medium-Saturation Collegiate Navy & Warm Ochre Gold
+   Strict Compliance: Zero Emojis, Editorial Serif & Clean Modern UI
    ========================================================================== */
 
 :root {
-  /* Brand Palette: Deep Campus Navy, Warm Radiant Gold, Refined Silver */
-  --navy-950: #060e1e;
-  --navy-900: #0b1b3d;
-  --navy-850: #0f224d;
-  --navy-800: #162b5d;
-  --navy-700: #1f3b7d;
-  --navy-600: #2d4f9f;
-  --navy-50:  #f0f4fa;
+  /* Brand Palette: Medium-Saturation Navy Blue & Warm Gold */
+  --navy-950: #162742;
+  --navy-900: #1f365c;
+  --navy-850: #264270;
+  --navy-800: #2f4f85;
+  --navy-700: #3d629c;
+  --navy-600: #5076b2;
+  --navy-50:  #eef3f9;
 
-  --gold-600: #856208;
-  --gold-500: #d4af37;
-  --gold-400: #e5be48;
-  --gold-300: #f4d36e;
-  --gold-100: #fdf8e9;
-  --gold-subtle: rgba(212, 175, 55, 0.14);
+  --gold-600: #7f6322;
+  --gold-500: #c29d48;
+  --gold-400: #cfb065;
+  --gold-300: #e2ca8c;
+  --gold-100: #f8f3e6;
+  --gold-subtle: rgba(194, 157, 72, 0.14);
 
   --silver-500: #64748b;
   --silver-400: #94a3b8;
   --silver-300: #cbd5e1;
   --silver-200: #e2e8f0;
-  --silver-100: #f1f5f9;
-  --silver-50:  #f8fafc;
+  --silver-100: #f3f5f8;
+  --silver-50:  #f7f8fa;
 
-  --canvas: #fcfbf9;
+  --canvas: #f9f8f5;
   --surface: #ffffff;
-  --surface-alt: #f8fafc;
-  
-  --text-primary: #0b172a;
-  --text-secondary: #334155;
-  --text-muted: #475569;
+  --surface-alt: #f7f7f7;
+
+  --text-primary: #142238;
+  --text-secondary: #37475e;
+  --text-muted: #52637a;
   --text-inverse: #f8fafc;
 
   /* Typography */
   --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Manrope', 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   /* Spacing Scale */
   --space-1: 0.25rem;
@@ -57,17 +58,17 @@
   /* Border Radii */
   --radius-xs: 4px;
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-xl: 32px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
   --radius-full: 9999px;
 
   /* Neutral Elevation Shadows */
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 12px 28px -6px rgba(0, 0, 0, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 24px 44px -12px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 32px 64px -16px rgba(0, 0, 0, 0.16);
+  --shadow-xs: 0 1px 3px rgba(22, 39, 66, 0.05);
+  --shadow-sm: 0 4px 12px rgba(22, 39, 66, 0.06);
+  --shadow-md: 0 12px 26px -6px rgba(22, 39, 66, 0.09), 0 4px 10px -2px rgba(22, 39, 66, 0.04);
+  --shadow-lg: 0 22px 42px -12px rgba(22, 39, 66, 0.13), 0 8px 16px -4px rgba(22, 39, 66, 0.05);
+  --shadow-xl: 0 30px 58px -16px rgba(22, 39, 66, 0.16);
 
   /* Transitions */
   --transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -76,5 +77,5 @@
 
   /* Max Widths */
   --container-max: 1240px;
-  --container-narrow: 840px;
+  --container-narrow: 880px;
 }
